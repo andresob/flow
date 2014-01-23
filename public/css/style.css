@@ -1,0 +1,81 @@
+/* Map styles definitions */
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+#state path {
+  stroke: #fff;
+  stroke-width: .8px;
+  stroke-linejoin: round;
+  transition: fill 0.2s ease-out;
+}
+
+#state path:hover {
+   fill: #5eab1f;
+   fill: #999;
+   cursor: pointer;    
+   pointer-events: all;
+}
+
+path.arc {
+  pointer-events: none;
+  fill: none;
+  stroke-opacity: .5;
+  display: none;
+}
+
+path.cell {
+  fill: none;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.circles {
+  fill-opacity: .8;
+  stroke: #f1f2f3;
+  stroke-width: 1.2px;
+}
+
+#cells.voronoi path.cell {
+  stroke: brown;
+}
+
+#cells g:hover path.arc {
+  display: inherit;
+}
+
+/* end of map definitions */
+
+/* Menu definitions */
+
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+#pageslide {
+  display: none;
+  position: absolute;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  z-index: 999999;
+  width: 200px;
+  padding: 20px;
+  background-color: #fafafa;
+  color: #666;
+  -webkit-box-shadow: inset -1px 0px 6px #afafaf; 
+  -moz-shadow: inset -1px 0px 6px #afafaf;
+  box-shadow: inset -1px 0px 6px #afafaf;
+}
+
+.open {
+  font-size: 25px;
+  color: #b76661;
+  margin: 10px;
+  transition: color 0.5s ease-out;
+}
+
+/*end of menu definitions */
