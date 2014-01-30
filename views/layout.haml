@@ -8,17 +8,23 @@
   %link(rel="stylesheet" href="css/style.css") 
 %body
   %header
-    %a.open{:href => "#panel"}
-      %span.glyphicon.glyphicon-align-justify
+    .main-menu
+      %a.open{:href => "#panel"}
+        %span.glyphicon.glyphicon-align-justify
+      %a{"data-target" => ".bs-modal-sm", "data-toggle" => "modal"}
+        %span.glyphicon.glyphicon-new-window
+    .modal.fade.bs-modal-sm{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", role: "dialog", tabindex: "-1"}
+      .modal-dialog.modal-sm
+        .modal-content
+          %ul.modal-menu
+            %li
+              %a#index{:href => "#"} Data Fixa
+            %li
+              %a#ue{:href => "#"} Última Etapa
+            %li
+              %a#inter{:href => "#"} Intermediária
   %section#pageslide{:style => "left: -240px; right: auto; display: none;"}
     #panel{:style => "display: block;"}
-      %ul.menu
-        %li
-          %a#index{:href => "index.html"} Data Fixa
-        %li
-          %a#ue{:href => "ue.html"} Última Etapa
-        %li
-          %a#inter{:href => "inter.html"} Intermediária
   %main.map
   .container
     = yield

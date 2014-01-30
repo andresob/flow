@@ -71,11 +71,40 @@ path.cell {
   box-shadow: inset -1px 0px 6px #afafaf;
 }
 
-.open {
-  font-size: 25px;
-  color: #b76661;
-  margin: 10px;
-  transition: color 0.5s ease-out;
+.main-menu span {
+  font-size: 23px;
+  color: #abc;
+  margin: 10px 15px;
+}
+
+.modal-menu {
+  width: 500px;
+  height: 250px;
+  padding: 0;
+}
+
+.modal-menu li {
+  background-color: #00cc99;
+  border: 1px solid #00b386;
+  display: inline;
+  width: 150px;
+  height: 150px;
+  margin: 20px 20px 0 -10px;
+  position: relative;
+  float: left;
+  border-radius: 2px;
+  padding: 55px 0;
+  text-align: center;
+}
+
+.modal-menu li:hover {
+  background-color: #00b386;
+}
+
+.modal-menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
 }
 
 /*end of menu definitions */
