@@ -1,0 +1,16 @@
+%header
+  .main-menu
+    %a.open{:href => "#panel"}
+      %span.glyphicon.glyphicon-align-justify
+    %a{"data-target" => ".bs-modal-sm", "data-toggle" => "modal"}
+      %span.glyphicon.glyphicon-new-window
+  .modal.fade.bs-modal-sm{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-dialog.modal-sm
+      .modal-content
+        %ul.modal-menu
+          %li
+            %a#index{:href => "#"} Data Fixa
+          %li
+            %a#ue{:href => "#"} Última Etapa
+          %li
+            %a#inter{:href => "#"} Intermediária

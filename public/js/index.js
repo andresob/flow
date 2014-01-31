@@ -7,8 +7,8 @@ d3.selectAll('.map > svg').remove();
   
   var projection = d3.geo.azimuthal()
       .mode("equidistant")
-      .scale(3800)
-      .translate([3300, -1030]);
+      .scale(3600)
+      .translate([3100, -990]);
   
   var path = d3.geo.path()
       .projection(projection);

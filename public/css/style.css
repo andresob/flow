@@ -55,6 +55,35 @@ path.cell {
   padding: 0;
 }
 
+#panel ul {
+  padding: 0;
+  margin: 0;
+}
+
+#panel li {
+  line-height: 35px;
+  padding-left: 10px;
+  border-left: 3px solid #fff;
+}
+
+#panel li:hover {
+  background-color: #fafafa;
+  border-left: 3px solid #6cb5f4;
+}
+
+#panel a {
+  text-decoration: none;
+}
+
+#panel a:hover {
+  color: #6cb5f4;
+}
+
+#panel span {
+  color: #cacaca;
+  margin: 0 5px;
+}
+
 #pageslide {
   display: none;
   position: absolute;
@@ -63,12 +92,13 @@ path.cell {
   height: 100%;
   z-index: 999999;
   width: 200px;
-  padding: 20px;
-  background-color: #fafafa;
+  padding: 50px 0 0 0;
+  background-color: #fcfcfc;
   color: #666;
-  -webkit-box-shadow: inset -1px 0px 6px #afafaf; 
+  border-right: 1px solid #eaeaea;
+  /*-webkit-box-shadow: inset -1px 0px 6px #afafaf; 
   -moz-shadow: inset -1px 0px 6px #afafaf;
-  box-shadow: inset -1px 0px 6px #afafaf;
+  box-shadow: inset -1px 0px 6px #afafaf;*/
 }
 
 .main-menu span {
