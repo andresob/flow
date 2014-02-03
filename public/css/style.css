@@ -138,3 +138,12 @@ path.cell {
 }
 
 /*end of menu definitions */
+
+/*side definitions */
+
+#info {
+  float: left;
+  position: absolute;
+}
+
+/*end ofside definitions */
