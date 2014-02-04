@@ -1,10 +1,9 @@
 function graph ( rate_file, data_file, color, input, output, balance) {
 
-d3.selectAll('body > svg').remove();
-d3.selectAll('#legend > ul').remove();
+d3.selectAll('main > svg').remove();
 
   var w = 740,
-      h = 670;
+      h = 640;
   
   var projection = d3.geo.azimuthal()
       .mode("equidistant")
@@ -14,7 +13,7 @@ d3.selectAll('#legend > ul').remove();
   var path = d3.geo.path()
       .projection(projection);
   
-  var svg = d3.select("body").insert("svg:svg", "h2")
+  var svg = d3.select(".map").insert("svg:svg")
       .attr("width", w)
       .attr("height", h);
   
