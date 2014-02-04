@@ -7,10 +7,11 @@
   .modal.fade.bs-modal-sm{"aria-hidden" => "true", "aria-labelledby" => "mySmallModalLabel", role: "dialog", tabindex: "-1"}
     .modal-dialog.modal-sm
       .modal-content
+        %button.close.modal-close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
         %ul.modal-menu
           %li
-            %a#index{:href => "#"} Data Fixa
+            %a#index{:href => "#", "data-dismiss" => "modal"} Data Fixa
           %li
-            %a#ue{:href => "#"} Última Etapa
+            %a#ue{:href => "#", "data-dismiss" => "modal"} Última Etapa
           %li
-            %a#inter{:href => "#"} Intermediária
+            %a#inter{:href => "#", "data-dismiss" => "modal"} Intermediária

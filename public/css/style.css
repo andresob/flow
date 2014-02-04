@@ -111,6 +111,7 @@ path.cell {
   width: 500px;
   height: 250px;
   padding: 0;
+  margin-top: 30px;
 }
 
 .modal-menu li {
@@ -135,6 +136,10 @@ path.cell {
   color: #fff;
   text-decoration: none;
   font-size: 20px;
+}
+
+.modal-close {
+  margin: 10px 10px 0 10px;
 }
 
 /*end of menu definitions */
