@@ -1,6 +1,6 @@
 function graph ( rate_file, data_file, color, input, output, balance) {
 
-d3.selectAll('main > svg').remove();
+  d3.selectAll('main > svg').remove();
 
   var w = 740,
       h = 640;
@@ -12,10 +12,16 @@ d3.selectAll('main > svg').remove();
   
   var path = d3.geo.path()
       .projection(projection);
+
+  var zoom = d3.behavior.zoom()
+    .scaleExtent([1, 8])
+    .on("zoom", zoomed);
   
   var svg = d3.select(".map").insert("svg:svg")
       .attr("width", w)
-      .attr("height", h);
+      .attr("height", h)
+        .call(zoom)
+      .append("g");
   
   var state = svg.append("svg:g")
       .attr("id", "state")
@@ -30,11 +36,6 @@ d3.selectAll('main > svg').remove();
   var colors = d3.scale.quantize()
       .range(colorbrewer[color][9]);
   
-  var zoom = d3.behavior.zoom()
-    .translate([0, 0])
-    .scale(1)
-    .scaleExtent([1, 8])
-    .on("zoom", zoomed);
   
   var data;
   
@@ -42,22 +43,12 @@ d3.selectAll('main > svg').remove();
   
   d3.select(".sedes").on("change", headquarters);
   d3.select(".links").on("change", links);
+  d3.selectAll('button').on('click', zoomClick);
   
   //carrega arquivo com os valores das taxas
   d3.json("data/" + rate_file, function(file) {
   
     data = file;
-
-    var legend = d3.select('#legend')
-        .append('ul')
-         .attr('class', 'list-inline');
-
-    var keys = legend.selectAll('li.key')
-        .data(colors.range());
-    
-    keys.enter().append('li')
-        .attr('class', 'key')
-        .style('border-top-color', String);
 
     //carrega o arquivo para desenhar o poligono
     d3.json("data/minas.json", function(collection) {
@@ -120,8 +111,7 @@ d3.selectAll('main > svg').remove();
     
         var g = cells.selectAll("g")
             .data(cities)
-          .enter().append("svg:g")
-            .call(zoom);
+          .enter().append("svg:g");
     
         //desenha as celulas e ativa as informações do municipios
         g.append("svg:path")
@@ -165,10 +155,50 @@ d3.selectAll('main > svg').remove();
 
   //zoom function
   function zoomed() {
-    state.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-    circles.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-    cells.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-  }  
+    svg.attr("transform", "translate(" + zoom.translate() + ")" + "scale(" + zoom.scale() + ")" );
+  }
+  
+  function interpolateZoom (translate, scale) {
+      var self = this;
+      return d3.transition().duration(350).tween("zoom", function () {
+          var iTranslate = d3.interpolate(zoom.translate(), translate),
+              iScale = d3.interpolate(zoom.scale(), scale);
+          return function (t) {
+              zoom
+                  .scale(iScale(t))
+                  .translate(iTranslate(t));
+              zoomed();
+          };
+      });
+  }
+  
+  function zoomClick() {
+      var clicked = d3.event.target,
+          direction = 1,
+          factor = 0.2,
+          target_zoom = 1,
+          center = [w/ 2, h/ 2],
+          extent = zoom.scaleExtent(),
+          translate = zoom.translate(),
+          translate0 = [],
+          l = [],
+          view = {x: translate[0], y: translate[1], k: zoom.scale()};
+  
+      d3.event.preventDefault();
+      direction = (this.id === 'zoom_in') ? 1 : -1;
+      target_zoom = zoom.scale() * (1 + factor * direction);
+  
+      if (target_zoom < extent[0] || target_zoom > extent[1]) { return false; }
+  
+      translate0 = [(center[0] - view.x) / view.k, (center[1] - view.y) / view.k];
+      view.k = target_zoom;
+      l = [translate0[0] * view.k + view.x, translate0[1] * view.k + view.y];
+  
+      view.x += center[0] - l[0];
+      view.y += center[1] - l[1];
+  
+      interpolateZoom([view.x, view.y], view.k);
+  }
 
   //headquarters function
   function headquarters() {

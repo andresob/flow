@@ -155,4 +155,19 @@ path.cell {
 
 /*zoom buttons */
 
+.btn-color {
+  color: #428bca;
+  font-size: 12px;
+}
+
+.btn-white {
+  background-color: #fff;
+  border: 1px solid #dadada;
+}
+
+.btn-map {
+  position: relative;
+  float: left;
+}
+
 /*end of zoom buttons */
