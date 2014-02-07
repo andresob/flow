@@ -36,7 +36,6 @@ function graph ( rate_file, data_file, color, input, output, balance) {
   var colors = d3.scale.quantize()
       .range(colorbrewer[color][9]);
   
-  
   var data;
   
   var rate;
