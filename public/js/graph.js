@@ -1,9 +1,5 @@
-var margin = {top: 30, right: 10, bottom: 30, left: 10}
-
-var width = window.innerWidth - (margin.right + margin.left),
-    height = window.innerHeight - (margin.top + margin.bottom);
-    console.log(width);
-    console.log(height);
+var width = window.innerWidth,
+    height = window.innerHeight;
 
 var color = d3.scale.ordinal()
     .range(colorbrewer.Set3[12]);
