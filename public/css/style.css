@@ -1,23 +1,29 @@
 .sidebar {
-  -webkit-border-radius: 1px;
-  -moz-border-radius: 1px;
-  -ms-border-radius: 1px;
-  -o-border-radius: 1px;
-  border-radius: 1px;
   background: rgba(51,51,51,0.4);
+       color: #d2d2d2;
+   font-size: 14px;
+
   position: absolute;
-  width: 60px;
-  padding: 10px 0;
-  top: 0;
-  color: #d2d2d2;
-  font-size: 14px;
-  z-index: 1;
-  margin: 50px 0 0 50px;  
+   z-index: 1;
+   padding: 10px 0;
+    margin: 50px 0 0 100px;  
+     width: 60px;
+       top: 0;
+
+  -webkit-border-radius: 1px;
+     -moz-border-radius: 1px;
+      -ms-border-radius: 1px;
+       -o-border-radius: 1px;
+          border-radius: 1px;
+
+  -webkit-box-shadow: 0 0 4px 1px rgba(0,0,0,0.09);
+     -moz-box-shadow: 0 0 4px 1px rgba(0,0,0,0.09);
+          box-shadow: 0 0 4px 1px rgba(0,0,0,0.09);
 }
 
 .side-nav {
-  margin: 0;
   padding: 0;
+   margin: 0;
 }
 
 .side-nav li {
@@ -26,23 +32,24 @@
 }
 
 .side-nav li a {
-  color: inherit;
   text-decoration: none;
-  display: block;
-  padding: 8px 20px;
+          padding: 8px 20px;
+          display: block;
+            color: inherit;
 }
 
 .side-nav li a:hover {
   -webkit-transition: background-color 0.2s;
-  -moz-transition: background-color 0.2s;
-  -o-transition: background-color 0.2s;
-  transition: background-color 0.2s;
-  background-color: #abc;
+     -moz-transition: background-color 0.2s;
+       -o-transition: background-color 0.2s;
+          transition: background-color 0.2s;
+    background-color: rgba(51,51,51,0.25);
 }
 
 .side-nav>li.active>a {
-  border-left: 4px solid #fff;
-  padding-left: 16px;
   background: rgba(51,51,51,0.25);
-  color: #f8f8f8;
+       color: #f8f8f8;
+
+  padding-left: 16px;
+   border-left: 4px solid #fff;
 }
