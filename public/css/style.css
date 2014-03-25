@@ -1,10 +1,12 @@
+/* Definition of sidebar */
+
 .sidebar {
   background: rgba(51,51,51,0.4);
        color: #d2d2d2;
    font-size: 14px;
 
   position: absolute;
-   z-index: 1;
+   z-index: 999;
    padding: 10px 0;
     margin: 50px 0 0 100px;  
      width: 60px;
@@ -51,3 +53,48 @@
     background-color: rgba(51,51,51,0.25);
 }
 
+/* End of sidebar */
+
+/* Definition of tag selection */
+
+.side-search {
+  z-index: 999;
+   margin: 50px 50px;
+   border: 1px solid rgba(51,51,51,0.4);
+    float: right;
+      top: 0;
+
+  -webkit-border-radius: 1px;
+     -moz-border-radius: 1px;
+      -ms-border-radius: 1px;
+       -o-border-radius: 1px;
+          border-radius: 1px;
+
+  -webkit-box-shadow: 0 0 4px 1px rgba(0,0,0,0.09);
+     -moz-box-shadow: 0 0 4px 1px rgba(0,0,0,0.09);
+          box-shadow: 0 0 4px 1px rgba(0,0,0,0.09);
+
+} 
+
+.side-search span{
+  vertical-align: middle;
+     line-height: 25px;
+          margin: 0 5px;
+           color: rgba(51,51,51,0.4);
+}
+
+.side-search input{
+  line-height: 34px;
+       height: 30px;
+       border: none;
+    
+  font-size: 15px;
+      color: #333333;
+}
+
+.side-search input:focus {
+  background-color: none;
+}
+
+
+/* End of tag selection */
