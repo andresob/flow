@@ -38,6 +38,11 @@
             color: inherit;
 }
 
+.side-nav li a.active {
+  background: rgba(51,51,51,0.25);
+       color: #f8f8f8;
+}
+
 .side-nav li a:hover {
   -webkit-transition: background-color 0.2s;
      -moz-transition: background-color 0.2s;
@@ -46,10 +51,3 @@
     background-color: rgba(51,51,51,0.25);
 }
 
-.side-nav>li.active>a {
-  background: rgba(51,51,51,0.25);
-       color: #f8f8f8;
-
-  padding-left: 16px;
-   border-left: 4px solid #fff;
-}

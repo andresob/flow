@@ -1,15 +1,17 @@
 !!!
 %head
   %meta{:charset => "utf-8"}/
+  %link(rel="stylesheet" href="css/animate.css") 
   %link(rel="stylesheet" href="css/bootstrap.css") 
   %link(rel="stylesheet" href="css/bootstrap-theme.css") 
-  %link(rel="stylesheet" href="css/animate.css") 
   %link(rel="stylesheet" href="css/colorbrewer.css") 
+  %link(rel="stylesheet" href="css/jquery.tagit.css") 
   %link(rel="stylesheet" href="css/style.css") 
 %body
   = partial("menu") 
   .container
     = yield
   %script{src:"js/jquery.js"}
+  %script{src:"js/tag-it.js"}
   %script{src:"js/bootstrap.min.js"}
   %script{src:"js/application.js"}
