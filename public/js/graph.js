@@ -1,18 +1,19 @@
-var width = 960,
-    height = 500;
+var width = 1256,
+    height = 680;
 
-var color = d3.scale.category20();
+var color = d3.scale.ordinal()
+    .range(colorbrewer.Set3[12]);
 
 var force = d3.layout.force()
-    .charge(-120)
-    .linkDistance(30)
+    .charge(-100)
+    .linkDistance( function(d) { return (d.value/300 * 15) } )
     .size([width, height]);
 
 var svg = d3.select("#graph").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-d3.json("data/test.json", function(error, graph) {
+d3.json("data/data.json", function(error, graph) {
   force
       .nodes(graph.nodes)
       .links(graph.links)
@@ -22,14 +23,18 @@ d3.json("data/test.json", function(error, graph) {
       .data(graph.links)
     .enter().append("line")
       .attr("class", "link")
-      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+      .style("stroke-width", function(d) { return Math.log(d.value)/4; })
+      .style("stroke", "#eaeaea");
 
   var node = svg.selectAll(".node")
       .data(graph.nodes)
     .enter().append("circle")
       .attr("class", "node")
-      .attr("r", 5)
+      .attr("r", function(d) { return 1.5 * Math.sqrt(d.weight); })
       .style("fill", function(d) { return color(d.group); })
+      //.on("mouseover", function (d) { showTooltip(d); })
+      //.on("mousemove", function (d) { moveTooltip(d); })
+      //.on("mouseout", function (d) { hideTooltip(d); })
       .call(force.drag);
 
   node.append("title")

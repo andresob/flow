@@ -5,13 +5,15 @@
   %link(rel="stylesheet" href="css/bootstrap.css") 
   %link(rel="stylesheet" href="css/bootstrap-theme.css") 
   %link(rel="stylesheet" href="css/colorbrewer.css") 
-  %link(rel="stylesheet" href="css/jquery.tagit.css") 
   %link(rel="stylesheet" href="css/style.css") 
+  %link(rel="stylesheet" href="css/visualizations.css") 
 %body
   = partial("menu") 
   .container
     = yield
   %script{src:"js/jquery.js"}
-  %script{src:"js/tag-it.js"}
   %script{src:"js/bootstrap.min.js"}
   %script{src:"js/application.js"}
+  %script{src:"js/d3.v3.min.js"}
+  %script{src:"js/colorbrewer.js"}
+  %script{src:"js/graph.js"}
