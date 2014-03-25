@@ -1,5 +1,9 @@
-var width = 1256,
-    height = 680;
+var margin = {top: 30, right: 10, bottom: 30, left: 10}
+
+var width = window.innerWidth - (margin.right + margin.left),
+    height = window.innerHeight - (margin.top + margin.bottom);
+    console.log(width);
+    console.log(height);
 
 var color = d3.scale.ordinal()
     .range(colorbrewer.Set3[12]);
@@ -49,4 +53,5 @@ d3.json("data/data.json", function(error, graph) {
     node.attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
   });
+
 });
