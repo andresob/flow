@@ -4,6 +4,13 @@ var width = window.innerWidth,
 var color = d3.scale.ordinal()
     .range(colorbrewer.Set3[12]);
 
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<span>" + d.name + "</span>";
+  })
+
 var force = d3.layout.force()
     .charge(-100)
     .linkDistance( function(d) { return (d.value/300 * 15) } )
@@ -12,6 +19,8 @@ var force = d3.layout.force()
 var svg = d3.select("#graph").append("svg")
     .attr("width", width)
     .attr("height", height);
+
+svg.call(tip);
 
 d3.json("data/data.json", function(error, graph) {
   force
@@ -32,9 +41,8 @@ d3.json("data/data.json", function(error, graph) {
       .attr("class", "node")
       .attr("r", function(d) { return 1.5 * Math.sqrt(d.weight); })
       .style("fill", function(d) { return color(d.group); })
-      //.on("mouseover", function (d) { showTooltip(d); })
-      //.on("mousemove", function (d) { moveTooltip(d); })
-      //.on("mouseout", function (d) { hideTooltip(d); })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
       .call(force.drag);
 
   node.append("title")

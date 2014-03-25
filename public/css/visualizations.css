@@ -1,8 +1,40 @@
+/* Definitions of graph visualization */
+
 .node {
-  stroke: #fafafa;
   stroke-width: .5px;
+        stroke: #fafafa;
 }
 
 .link {
   stroke-opacity: .6;
 }
+
+.d3-tip {
+  background: rgba(0, 0, 0, 0.55);
+       color: #fff;
+
+  border-radius: 1px;
+    line-height: 1;
+        padding: 9px;
+}
+
+.d3-tip:after {
+  line-height: 1;
+   box-sizing: border-box;
+     position: absolute;
+      display: inline;
+        width: 100%;
+
+  text-align: center;
+   font-size: 10px;
+     content: "\25BC";
+       color: rgba(0, 0, 0, 0.55);
+}
+
+.d3-tip.n:after {
+  margin: -3px 0 0 0;
+     top: 100%;
+    left: 0;
+}
+
+/* End of definitions of graph visualization */
