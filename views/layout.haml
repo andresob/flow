@@ -7,47 +7,15 @@
   %link(rel="stylesheet" href="css/colorbrewer.css") 
   %link(rel="stylesheet" href="css/style.css") 
 %body
-  = partial("mainMenu") 
-  = partial("sideBar") 
+  = partial("menu") 
   .container
     = yield
-  %script{src:  "js/jquery.js"}
-  %script{src:  "js/jquery.pageslide.js"}
-  %script{src:  "js/bootstrap.min.js"}
-  %script{src:  "js/d3.v3.min.js"}
-  %script{src:  "js/d3.csv.js"}
-  %script{src:  "js/d3.geo.js"}
-  %script{src:  "js/d3.geom.js"}
-  %script{src:  "js/colorbrewer.js"}
-  %script{src:  "js/index.js"}
-  :javascript
-    $(document).ready(function () {
-      $(".open").pageslide({ direction: "right", modal: true });
-      $('#index').click(function(e) {
-        event.preventDefault();
-        $('#ue').parent().removeClass('marked');
-        $('#inter').parent().removeClass('marked');
-        $(this).parent().toggleClass('marked');
-        graph('rate_df.json','data_fixa.csv', 'YlGn', 'input_data_fixa', 'output_data_fixa', 'saldo_data_fixa');
-      });
-      $('#ue').click(function(e) {
-        event.preventDefault();
-        $('#index').parent().removeClass('marked');
-        $('#inter').parent().removeClass('marked');
-        $(this).parent().toggleClass('marked');
-        graph('rate_ue.json','ultima_etapa.csv','RdPu', 'input_ue', 'output_ue', 'rate_ue');
-      });
-      $('#inter').click(function(e) {
-        event.preventDefault();
-        $('#ue').parent().removeClass('marked');
-        $('#index').parent().removeClass('marked');
-        $(this).parent().toggleClass('marked');
-        graph('rate.json','etapas.csv', 'OrRd');
-      });
-      $('.cities').click(function(){
-        $('.card').removeClass().addClass('slideInRight animated').one('webkitAnimationEnd mozAnimationEnd oAnimationEnd animationEnd', function(){
-        $(this).removeClass();
-        });
-      });
-    });
-    
+  %script{src:"js/jquery.js"}
+  %script{src:"js/jquery.pageslide.js"}
+  %script{src:"js/bootstrap.min.js"}
+  %script{src:"js/d3.v3.min.js"}
+  %script{src:"js/d3.csv.js"}
+  %script{src:"js/d3.geo.js"}
+  %script{src:"js/d3.geom.js"}
+  %script{src:"js/colorbrewer.js"}
+  %script{src:"js/graph.js"}
