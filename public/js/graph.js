@@ -20,6 +20,8 @@ var svg = d3.select("#graph").append("svg")
     .attr("width", width)
     .attr("height", height);
 
+var flow;
+
 svg.call(tip);
 
 d3.json("data/data.json", function(error, graph) {
@@ -27,6 +29,7 @@ d3.json("data/data.json", function(error, graph) {
       .nodes(graph.nodes)
       .links(graph.links)
       .start();
+      flow = graph;
 
   var link = svg.selectAll(".link")
       .data(graph.links)

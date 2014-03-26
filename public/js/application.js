@@ -1,5 +1,5 @@
 function search_node(attr, value) {
-  return nodes.filter(function(n) {
+  return flow.nodes.filter(function(n) {
     return n.name.toLowerCase().indexOf(value.toLowerCase()) >= 0;
   });
 };

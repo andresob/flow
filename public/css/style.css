@@ -80,21 +80,28 @@
 
 .side-search span{
   vertical-align: middle;
-     line-height: 25px;
+     line-height: 38px;
+        position: absolute;
           margin: 0 5px;
            color: rgba(51,51,51,0.4);
+           float: right;
+           right: 0;
 }
 
-.side-search input{
+.side-search ul{
   line-height: 34px;
-       height: 30px;
+      padding: 0;
+       margin: 0 30px 0 0;
+       height: 40px;
+       width: 240px;
        border: none;
     
-  font-size: 15px;
-      color: #333333;
+  list-style: none;
+   font-size: 15px;
+       color: #333333;
 }
 
-.side-search input:focus {
+.side-search ul input:focus {
   background-color: none;
 }
 
