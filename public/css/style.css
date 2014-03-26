@@ -102,7 +102,7 @@
 }
 
 .side-search ul input:focus {
-  background-color: none;
+  outline: 0;
 }
 
 /* End of tag selection */

@@ -1,5 +1,5 @@
 var width = window.innerWidth,
-    height = (window.innerHeight - 18);
+    height = window.innerHeight;
 
 var color = d3.scale.ordinal()
     .range(colorbrewer.Set3[12]);
@@ -14,7 +14,7 @@ var tip = d3.tip()
 var force = d3.layout.force()
     .charge(-70)
     .linkDistance( function(d) { return (d.value/300 * 15) } )
-    .size([width/1.5, height/1.2]);
+    .size([width/2, height/1.2]);
 
 var svg = d3.select("#graph").append("svg")
     .attr("width", width)
@@ -66,11 +66,11 @@ d3.json("data/data.json", function(error, graph) {
   
   function resize() {
     width = window.innerWidth;
-    height = (window.innerHeight - 18);
+    height = window.innerHeight;
     svg.attr("width", width)
        .attr("height", height);
     force
-       .size([width, height])
+       .size([width/2, height/1.2])
        .resume();
   }
 

@@ -10,19 +10,21 @@ ul.tagit li.tagit-choice {
     position: absolute;
     float: left;
     height: inherit;
-    width: inherit;
+    width: 270px;
+    z-index: 10;
 }
 ul.tagit li.tagit-choice span {
     float: left;
     position: relative;
     height: inherit;
     width: inherit;
-    padding: 3px 0 0 0;
+    padding: 3px 0 0 5px;
+    margin: 0;
 }
 ul.tagit li.tagit-choice .tagit-close span {
     float: left;
     position: absolute;
-    padding: 12px 0;
+    padding: 13px 5px 0 0;
     cursor: pointer;
 }
 ul.tagit li.tagit-choice .tagit-label:not(a) {
@@ -40,9 +42,9 @@ ul.tagit li.tagit-choice .ui-icon {
 ul.tagit li.tagit-choice .tagit-close .text-icon {
     display: inline;
     font-family: arial, sans-serif;
-    font-size: 16px;
+    font-size: 24px;
     line-height: 16px;
-    color: #777;
+    color: rgba(51,51,51,0.4);
 }
 ul.tagit li.tagit-choice a.tagLabel:hover,
 ul.tagit li.tagit-choice a.tagit-close .text-icon:hover {
@@ -54,7 +56,9 @@ ul.tagit input[type="text"] {
     border: none;
     height: inherit;
     width: 245px;
+    padding: 3px 0 0 5px
 }
+  
 .ui-widget {
     font-size: 1.1em;
 }
