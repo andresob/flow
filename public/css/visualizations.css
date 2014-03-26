@@ -16,6 +16,7 @@
   border-radius: 1px;
     line-height: 1;
         padding: 9px;
+          float: right;
 }
 
 .d3-tip:after {
@@ -24,6 +25,7 @@
      position: absolute;
       display: inline;
         width: 100%;
+        float: right;
 
   text-align: center;
    font-size: 10px;

@@ -1,5 +1,5 @@
 var width = window.innerWidth,
-    height = window.innerHeight;
+    height = (window.innerHeight - 18);
 
 var color = d3.scale.ordinal()
     .range(colorbrewer.Set3[12]);
@@ -12,9 +12,9 @@ var tip = d3.tip()
   })
 
 var force = d3.layout.force()
-    .charge(-100)
+    .charge(-70)
     .linkDistance( function(d) { return (d.value/300 * 15) } )
-    .size([width, height]);
+    .size([width/1.5, height/1.2]);
 
 var svg = d3.select("#graph").append("svg")
     .attr("width", width)
@@ -48,6 +48,9 @@ d3.json("data/data.json", function(error, graph) {
   node.append("title")
       .text(function(d) { return d.name; });
 
+  resize();
+  d3.select(window).on("resize", resize);
+
   force.on("tick", function() {
     link.attr("x1", function(d) { return d.source.x; })
         .attr("y1", function(d) { return d.source.y; })
@@ -57,5 +60,15 @@ d3.json("data/data.json", function(error, graph) {
     node.attr("cx", function(d) { return d.x; })
         .attr("cy", function(d) { return d.y; });
   });
+  
+  function resize() {
+    width = window.innerWidth;
+    height = (window.innerHeight - 18);
+    svg.attr("width", width)
+       .attr("height", height);
+    force
+       .size([width, height])
+       .resume();
+  }
 
 });
