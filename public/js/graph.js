@@ -20,7 +20,7 @@ var svg = d3.select("#graph").append("svg")
     .attr("width", width)
     .attr("height", height);
 
-var flow;
+var flow, focus;
 
 svg.call(tip);
 
@@ -36,7 +36,10 @@ d3.json("data/data.json", function(error, graph) {
     .enter().append("line")
       .attr("class", "link")
       .style("stroke-width", function(d) { return Math.log(d.value)/4; })
-      .style("stroke", "#eaeaea");
+      .style("stroke", "#eaeaea")
+      .style('opacity', function(d) {
+              return d.target.module ? 0.2 : 0.3
+                  });
 
   var node = svg.selectAll(".node")
       .data(graph.nodes)
@@ -46,7 +49,38 @@ d3.json("data/data.json", function(error, graph) {
       .style("fill", function(d) { return color(d.group); })
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
-      .call(force.drag);
+      .call(force.drag)
+      .on('click', function(d) {
+          if (focus === d) {
+            force.charge(-100)
+                 .linkDistance(100)
+                 .linkStrength(1)
+                 .start()
+
+            node.style('opacity', 1);
+            link.style('opacity', function(d) {
+                return d.target.module ? 0.2 : 0.3
+            }) 
+            focus = false
+          }
+          focus = d
+  
+          //node.style('opacity', function(o) {
+          //  o.active = connected(d, o)
+          //  return o.active ? 1 : 0.2
+          //})
+
+          force.charge(function(o) {
+              return (o.active ? -100 : -5) * 10
+          }).linkDistance(function(l) {
+              return (l.source.active && l.target.active ? 100 : 20) * 10
+          }).linkStrength(function(l) {
+              return (l.source === d || l.target === d ? 1 : 0) * 10
+          }).start()
+          link.style('opacity', function(l, i) {
+              return l.source.active && l.target.active ? 0.2 : 0.02
+          })
+      });
 
   node.append("title")
       .text(function(d) { return d.name; });
@@ -73,5 +107,13 @@ d3.json("data/data.json", function(error, graph) {
        .size([width/2, height/1.2])
        .resume();
   }
+
+  //function connected(d, o) {
+  //  return o.index === d.index ||
+  //      (d.source.index && d.source.index.indexOf(o.node.index) !== -1) ||
+  //      (o.source.index && o.source.index.indexOf(d.node.index) !== -1) ||
+  //      (o.target.index && o.target.index.indexOf(d.node.index) !== -1) ||
+  //      (d.target.index && d.target.index.indexOf(o.node.index) !== -1)
+  //};
 
 });

@@ -21,7 +21,7 @@ $(document).ready(function(){
     removeConfirmation: true,
     autocomplete: {minLength: 3},
     afterTagAdded: function(event, ui){
-      //hideNodes(ui.tagLabel)
+      //search(ui.tagLabel)
     },
     afterTagRemoved: function(event, ui){
       //showNodes(ui.tagLabel)
