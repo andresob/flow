@@ -106,26 +106,3 @@
 }
 
 /* End of tag selection */
-
-/* Definition of info button */
-
-#graph svg {
-  position: absolute;
-}
-
-#info {
-  position: relative;
-    margin: 50px; 
-     right: 0;
-       top: 100px;
-     float: right;
-
-  font-size: 19px;
-}
-
-#info a {
-  cursor: pointer;
-   color: rgba(51,51,51,0.4);
-}
-
-/* End of info button */

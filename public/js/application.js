@@ -20,6 +20,15 @@ $(document).ready(function(){
     onlyAvailableTags: true,
     removeConfirmation: true,
     autocomplete: {minLength: 3},
+    afterTagAdded: function(event, ui){
+      //hideNodes(ui.tagLabel)
+    },
+    afterTagRemoved: function(event, ui){
+      //showNodes(ui.tagLabel)
+    }
   });
+
+  //set class active on menu
   $('.side-nav li a[href$="' + location.pathname.split("/")[1] + '"]').addClass('active');
+
 });

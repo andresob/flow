@@ -1,5 +1,9 @@
 /* Definitions of graph visualization */
 
+#graph svg {
+  position: absolute;
+}
+
 .node {
   stroke-width: .5px;
         stroke: #fafafa;
@@ -40,3 +44,26 @@
 }
 
 /* End of definitions of graph visualization */
+
+
+/* Definitions of map visualization */
+
+#map svg {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+#state path {
+  stroke: #fff;
+  stroke-width: .8px;
+  stroke-linejoin: round;
+}
+
+#state path:hover {
+   fill: #5eab1f;
+   fill: #999;
+   cursor: pointer;    
+   pointer-events: all;
+}
+
+/* End of definitions of map visualization */
