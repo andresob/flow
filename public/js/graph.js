@@ -13,7 +13,8 @@ var tip = d3.tip()
 
 var svg = d3.select("#graph").append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .attr("class", "back-white");
 
 var force = d3.layout.force()
     .charge(-70)
@@ -36,7 +37,6 @@ d3.json("data/data.json", function(error, graph) {
     .enter().append("line")
       .attr("class", "link")
       .style("stroke-width", function(d) { return Math.log(d.value)/4; })
-      .style("stroke", "#eaeaea")
       .style('opacity', function(d) {
               return d.target.module ? 0.2 : 0.3
                   });

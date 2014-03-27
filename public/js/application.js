@@ -10,6 +10,31 @@ function get_node_name(attr, value) {
   });
 };
 
+SVGElement.prototype.hasClass = function (className) {
+  return new RegExp('(\\s|^)' + className + '(\\s|$)').test(this.getAttribute('class'));
+};
+
+SVGElement.prototype.addClass = function (className) {
+  if (!this.hasClass(className)) {
+    this.setAttribute('class', this.getAttribute('class') + ' ' + className);
+  }
+};
+
+SVGElement.prototype.removeClass = function (className) {
+  var removedClass = this.getAttribute('class').replace(new RegExp('(\\s|^)' + className + '(\\s|$)', 'g'), '$2');
+  if (this.hasClass(className)) {
+    this.setAttribute('class', removedClass);
+  }
+};
+
+SVGElement.prototype.toggleClass = function (className) {
+  if (this.hasClass(className)) {
+    this.removeClass(className);
+  } else {
+    this.addClass(className);
+  }
+};
+
 $(document).ready(function(){
   $("#myTags").tagit({
     tagSource: function(request, response){
@@ -31,4 +56,17 @@ $(document).ready(function(){
   //set class active on menu
   $('.side-nav li a[href$="' + location.pathname.split("/")[1] + '"]').addClass('active');
 
+  //click to hide menu and search bar
+  $('.downbar .hide-stuffs').click(function (e){
+    e.preventDefault();
+    $('.sidebar').toggleClass('fadeInDown bounceOutUp');
+    $('.side-search').toggleClass('fadeInRight bounceOutRight');
+  });
+
+  //click to invert colors
+  $('.downbar .invert').click(function (e){
+    e.preventDefault();
+    var graph = document.querySelector('#graph svg');
+    graph.toggleClass('back-white back-black');
+  });
 });

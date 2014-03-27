@@ -2,7 +2,14 @@
 
 #graph svg {
   position: absolute;
+}
+
+.back-black {
   background: #3a3a3a;
+}
+
+.back-white {
+  background: #fff;
 }
 
 .node {
@@ -12,6 +19,7 @@
 
 .link {
   stroke-opacity: .6;
+          stroke: #9f9f9f;
 }
 
 .d3-tip {
