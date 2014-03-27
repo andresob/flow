@@ -11,14 +11,14 @@ var tip = d3.tip()
     return "<span>" + d.name + "</span>";
   })
 
-var force = d3.layout.force()
-    .charge(-70)
-    .linkDistance( function(d) { return (d.value/300 * 15) } )
-    .size([width/2, height/1.2]);
-
 var svg = d3.select("#graph").append("svg")
     .attr("width", width)
     .attr("height", height);
+
+var force = d3.layout.force()
+    .charge(-70)
+    .linkDistance( function(d) { return (d.value/300 * 15) } )
+    .size([width, height]);
 
 var flow, focus;
 
@@ -52,34 +52,37 @@ d3.json("data/data.json", function(error, graph) {
       .call(force.drag)
       .on('click', function(d) {
           if (focus === d) {
-            force.charge(-100)
-                 .linkDistance(100)
+            force.charge(-70)
+                 .linkDistance( function(d) { return (d.value/300 * 15) } )
                  .linkStrength(1)
-                 .start()
+                 .start();
 
             node.style('opacity', 1);
             link.style('opacity', function(d) {
                 return d.target.module ? 0.2 : 0.3
             }) 
-            focus = false
+            focus = false;
           }
-          focus = d
+          else {
+            focus = d;
   
-          //node.style('opacity', function(o) {
-          //  o.active = connected(d, o)
-          //  return o.active ? 1 : 0.2
-          //})
+            node.style('opacity', function(o) {
+              o.active = connected(focus, o);
+              return o.active ? 1: 0.2;
+            })
 
-          force.charge(function(o) {
-              return (o.active ? -100 : -5) * 10
-          }).linkDistance(function(l) {
-              return (l.source.active && l.target.active ? 100 : 20) * 10
-          }).linkStrength(function(l) {
-              return (l.source === d || l.target === d ? 1 : 0) * 10
-          }).start()
-          link.style('opacity', function(l, i) {
-              return l.source.active && l.target.active ? 0.2 : 0.02
-          })
+            force.charge(function(o) {
+                return (o.active ? -100 : -5);
+            }).linkDistance(function(l) {
+                return (l.source.active && l.target.active ? 100 : 20);
+            }).linkStrength(function(l) {
+                return (l.source === d || l.target === d ? 1 : 0);
+            }).start();
+
+            link.style('opacity', function(l, i) {
+                return l.source.active && l.target.active ? 0.2 : 0.02
+            })
+          }
       });
 
   node.append("title")
@@ -104,16 +107,15 @@ d3.json("data/data.json", function(error, graph) {
     svg.attr("width", width)
        .attr("height", height);
     force
-       .size([width/2, height/1.2])
+       .size([width, height])
        .resume();
   }
 
-  //function connected(d, o) {
-  //  return o.index === d.index ||
-  //      (d.source.index && d.source.index.indexOf(o.node.index) !== -1) ||
-  //      (o.source.index && o.source.index.indexOf(d.node.index) !== -1) ||
-  //      (o.target.index && o.target.index.indexOf(d.node.index) !== -1) ||
-  //      (d.target.index && d.target.index.indexOf(o.node.index) !== -1)
-  //};
-
+  function connected(s, t) {
+    return flow.links.filter( function(n) {
+      return (s === t) ||
+             (n.source == s && n.target == t) ||
+             (n.source == t && n.target == s)
+             }).length != 0;
+  }
 });
