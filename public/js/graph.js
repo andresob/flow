@@ -59,7 +59,7 @@ d3.json("data/data.json", function(error, graph) {
 
             node.style('opacity', 1);
             link.style('opacity', function(d) {
-                return d.target.module ? 0.2 : 0.3
+                return d.target.module ? 0.6 : 0.1
             }) 
             focus = false;
           }
@@ -68,11 +68,11 @@ d3.json("data/data.json", function(error, graph) {
   
             node.style('opacity', function(o) {
               o.active = connected(focus, o);
-              return o.active ? 1: 0.2;
+              return o.active ? 1: 0.1;
             })
 
             force.charge(function(o) {
-                return (o.active ? -100 : -5);
+                return (o.active ? -100 :-5);
             }).linkDistance(function(l) {
                 return (l.source.active && l.target.active ? 100 : 20);
             }).linkStrength(function(l) {

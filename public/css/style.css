@@ -105,4 +105,11 @@
   outline: 0;
 }
 
+.side-search .mag-glass {
+  background: #fff;
+  width: 25px;
+  height: 40px;
+  margin: -1px 0;
+} 
+
 /* End of tag selection */

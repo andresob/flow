@@ -21,10 +21,10 @@ $(document).ready(function(){
     removeConfirmation: true,
     autocomplete: {minLength: 3},
     afterTagAdded: function(event, ui){
-      //search(ui.tagLabel)
+      search(ui.tagLabel)
     },
     afterTagRemoved: function(event, ui){
-      //showNodes(ui.tagLabel)
+      search(ui.tagLabel)
     }
   });
 
