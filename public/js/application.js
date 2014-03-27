@@ -67,6 +67,7 @@ $(document).ready(function(){
   $('.downbar .invert').click(function (e){
     e.preventDefault();
     var graph = document.querySelector('#graph svg');
-    graph.toggleClass('back-white back-black');
+    graph.toggleClass('back-white');
+    graph.toggleClass('back-black');
   });
 });

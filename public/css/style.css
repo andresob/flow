@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 /* Definition of sidebar */
 
 .sidebar {
@@ -50,7 +54,7 @@
        -o-transition: all .3s ease-in-out;
 
 }
-  
+
 .downbar:hover {
     transform: translate(0,-75px);
     -webkit-transform: translate(0,-75px);
