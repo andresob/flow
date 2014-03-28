@@ -57,6 +57,10 @@
 
 /* Definitions of map visualization */
 
+#map {
+  margin: 50px 0 0 100px;
+}
+
 #map svg {
   position: absolute;
   margin: 0;
@@ -76,3 +80,12 @@
 }
 
 /* End of definitions of map visualization */
+
+
+/* Definitions of deformed map visualization */
+
+#deformed {
+  margin: 50px 0 0 100px;
+}
+
+/* End of definitions of deformed map visualization */

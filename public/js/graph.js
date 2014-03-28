@@ -107,7 +107,6 @@ d3.json("data/data.json", function(error, graph) {
     svg.attr("width", width)
        .attr("height", height);
     force
-       .size([width, height])
        .resume();
   }
 
