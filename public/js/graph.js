@@ -19,6 +19,7 @@ var svg = d3.select("#graph").append("svg")
 var force = d3.layout.force()
     .charge(-70)
     .linkDistance( function(d) { return (d.value/300 * 15) } )
+    .gravity([1])
     .size([width, height]);
 
 var flow, focus;
