@@ -67,14 +67,14 @@
   padding: 0;
 }
 #state path {
-  stroke: #fff;
-  stroke-width: .8px;
+  stroke: #fafafa;
+  stroke-width: .4px;
   stroke-linejoin: round;
+  fill: #3f3f3f;
 }
 
 #state path:hover {
    fill: #5eab1f;
-   fill: #999;
    cursor: pointer;    
    pointer-events: all;
 }
@@ -86,6 +86,10 @@
 
 #deformed {
   margin: 50px 0 0 100px;
+}
+
+#deformed svg {
+  position: absolute;
 }
 
 /* End of definitions of deformed map visualization */

@@ -17,8 +17,8 @@ var svg = d3.select("#graph").append("svg")
     .attr("class", "back-white");
 
 var force = d3.layout.force()
-    .charge(-70)
-    .linkDistance( function(d) { return (d.value/300 * 15) } )
+    .charge(-150)
+    .linkDistance( function(d) { return (d.value/200 * 15) } )
     .gravity([1])
     .size([width, height]);
 
@@ -53,8 +53,8 @@ d3.json("data/data.json", function(error, graph) {
       .call(force.drag)
       .on('click', function(d) {
           if (focus === d) {
-            force.charge(-70)
-                 .linkDistance( function(d) { return (d.value/300 * 15) } )
+            force.charge(-150)
+                 .linkDistance( function(d) { return (d.value/200 * 15) } )
                  .linkStrength(1)
                  .start();
 
@@ -73,9 +73,9 @@ d3.json("data/data.json", function(error, graph) {
             })
 
             force.charge(function(o) {
-                return (o.active ? -100 :-5);
+                return (o.active ? -200 :-5);
             }).linkDistance(function(l) {
-                return (l.source.active && l.target.active ? 100 : 20);
+                return (l.source.active && l.target.active ? 140 : 20);
             }).linkStrength(function(l) {
                 return (l.source === d || l.target === d ? 1 : 0);
             }).start();

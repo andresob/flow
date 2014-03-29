@@ -1,17 +1,17 @@
-var w = 740,
-    h = 670;
+var width = window.innerWidth,
+    height = window.innerHeight;
 
 var projection = d3.geo.azimuthal()
     .mode("stereographic")
-    .scale(1000)
-    .translate([900, 100]);
+    .scale(1300)
+    .translate([1100, 100]);
 
 var path = d3.geo.path()
     .projection(projection);
 
 var svg = d3.select("#deformed").insert("svg:svg")
-    .attr("width", w)
-    .attr("height", h)
+    .attr("width", width - 50)
+    .attr("height", height -100)
     .append("g");
 
 var state = svg.append("svg:g")
