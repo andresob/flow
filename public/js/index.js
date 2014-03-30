@@ -11,8 +11,7 @@ var path = d3.geo.path()
 
 var svg = d3.select("#map").insert("svg:svg")
     .attr("width", width - 50)
-    .attr("height", height -100)
-    .append("g");
+    .attr("height", height -100);
 
 var state = svg.append("svg:g")
     .attr("id", "state");
