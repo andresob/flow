@@ -55,7 +55,7 @@ body {
 
 }
 
-.downbar :hover {
+.downbar .side-nav:hover {
     transform: translate(0,-75px);
     -webkit-transform: translate(0,-75px);
     -o-transform: translate(0,-75px); 
