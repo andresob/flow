@@ -100,4 +100,10 @@
   text-anchor: middle;
 } 
 
+#bar {
+  float: right;
+  position: absolute;
+  right: 100px;
+}
+
 /* End of definitions of deformed map visualization */
