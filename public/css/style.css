@@ -49,18 +49,20 @@ body {
      -moz-box-shadow: 0 0 4px 1px rgba(0,0,0,0.09);
           box-shadow: 0 0 4px 1px rgba(0,0,0,0.09);
 
-  -webkit-transition: all .3s ease-in-out;
-     -moz-transition: all .3s ease-in-out;
-       -o-transition: all .3s ease-in-out;
+  -webkit-transition: -webkit-transfor .3s ease-in-out;
+     -moz-transition: -moz-transform .3s ease-in-out;
+       -o-transition: -o-transform .3s ease-in-out;
+          transition: transform .3s ease-in-out;
 
 }
-
-.downbar .side-nav:hover {
-    transform: translate(0,-75px);
+  
+.downbar:hover {
     -webkit-transform: translate(0,-75px);
-    -o-transform: translate(0,-75px); 
-    -moz-transform: translate(0,-75px);
+       -moz-transform: translate(0,-75px);
+         -o-transform: translate(0,-75px); 
+            transform: translate(0,-75px);
 }
+
 
 .side-nav {
   padding: 0;
