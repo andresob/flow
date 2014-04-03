@@ -35,6 +35,66 @@ SVGElement.prototype.toggleClass = function (className) {
   }
 };
 
+function dicState (a) {
+
+  switch(a) {
+    case "Acre":
+      return [24000, [5100,-300], "ac"];
+    case "Alagoas":
+      return [50000, [5450,-1050], "al"];
+    case "Amazonas":
+      return [14000, [2900,200], "am"];
+    case "Amapá":
+      return [25000, [3950,450], "ap" ];
+    case "Bahia":
+      return [19000, [2600,-400], "ba"];
+    case "Ceará":
+      return [30000, [3600,-100], "ce"];
+    case "Espírito Santo":
+      return [41000, [4900, -1950], "es"];
+    case "Goiás":
+      return [24000, [3650, -700], "go"];
+    case "Maranhão":
+      return [20000, [2800, 50], "ma"];
+    case "Minas Gerais":
+      return [20000, [2950, -700], "mg"];
+    case "Mato Grosso do Sul":
+      return [22000, [3680, -900], "ms"];
+    case "Mato Grosso":
+      return [16000, [2850, -200], "mt"];
+    case "Pará":
+      return [14000, [2400, 200], "pa"];
+    case "Paraíba":
+      return [39000, [4300, -400], "pb"];
+    case "Pernambuco":
+      return [36000, [4200, -500], "pe"];
+    case "Piauí":
+      return [22000, [2900, -90], "pi"];
+    case "Paraná":
+      return [26000, [4050, -1500], "pr"];
+    case "Rio de Janeiro":
+      return [42000, [5350, -2350], "rj"];
+    case "Rio Grande do Norte":
+      return [46000, [5050, -400], "rn"];
+    case "Rondônia":
+      return [22000, [4150, -350], "ro"];
+    case "Roráima":
+      return [21000, [3900, 450], "rr"];
+    case "Rio Grande do Sul":
+      return [24000, [3950, -1760], "rs"];
+    case "Santa Catarina":
+      return [29000, [4450, -2000], "sc"];
+    case "Sergipe":
+      return [50000, [5450, -1150], "se"];
+    case "São Paulo":
+      return [24000, [3650, -1200], "sp"];
+    case "Tocantis":
+      return [20000, [3000, -150], "to"];
+   default:
+      return alert ("Faça a busca novamente");
+  }
+};
+
 $(document).ready(function(){
   //search node on graph view
   $("#searchNode").tagit({
@@ -56,16 +116,16 @@ $(document).ready(function(){
 
   //search state on map view
   $("#searchState").tagit({
-    availableTags: ["Acre", "Alagoas", "Amazonas", "Amapá", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo", "Goias", "Maranhão", "Minas Gerais", "Mata Grosso do Sul", "Mato Grosso", "Pará", "Paraíba", "Pernambuco", "Piauí", "Paraná", "Rio de Janeiro", "Rio Grande do Norte", "Rondônia", "Roráima", "Rio Grande do Sul", "Santa Catarina", "Sergipe", "São Paulo", "Tocantis"],
+    availableTags: ["Acre", "Alagoas", "Amazonas", "Amapá", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", "Minas Gerais", "Mato Grosso do Sul", "Mato Grosso", "Pará", "Paraíba", "Pernambuco", "Piauí", "Paraná", "Rio de Janeiro", "Rio Grande do Norte", "Rondônia", "Roráima", "Rio Grande do Sul", "Santa Catarina", "Sergipe", "São Paulo", "Tocantis"],
     tagLimit: 1,
     caseSensitive: true,
     allowSpaces: true,
     onlyAvailableTags: true,
     removeConfirmation: true,
-    autocomplete: {minLength: 3},
+    autocomplete: {minLength: 1},
     afterTagAdded: function(event, ui){
-      alert(ui.tagLabel)
-      //drawState(ui.tagLabel)
+      //alert(ui.tagLabel)
+      drawState(ui.tagLabel)
     },
   });
 

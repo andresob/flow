@@ -1,26 +1,34 @@
-var width = window.innerWidth,
-    height = window.innerHeight;
+function drawState (state) {
+  
+  d3.selectAll('#map > svg').remove();
 
-var projection = d3.geo.azimuthal()
-    .mode("stereographic")
-    .scale(1300)
-    .translate([1100, 100]);
+  var stateFile = dicState (state);
+    console.log(stateFile);
 
-var path = d3.geo.path()
-    .projection(projection);
+  var width = window.innerWidth,
+      height = window.innerHeight;
+  
+  var projection = d3.geo.mercator()
+      .scale(stateFile[0])
+      .translate(stateFile[1]);
+  
+  var path = d3.geo.path()
+      .projection(projection);
+  
+  var svg = d3.select("#map").insert("svg:svg")
+      .attr("width", width - 50)
+      .attr("height", height -50);
+  
+  var state = svg.append("svg:g")
+      .attr("id", "state");
+  
+  //carrega o arquivo para desenhar o poligono
+  d3.json("data/maps/" + stateFile[2] + ".topo.json", function(error, collection) {
+    state.selectAll("path")
+        .data(topojson.feature(collection, collection.objects.layer1).features)
+      .enter().append("svg:path")
+        .attr("d", path)
+        .on("click", function(n) { alert (n.properties.nome) });
+  });
 
-var svg = d3.select("#map").insert("svg:svg")
-    .attr("width", width - 50)
-    .attr("height", height -100);
-
-var state = svg.append("svg:g")
-    .attr("id", "state");
-
-//carrega o arquivo para desenhar o poligono
-d3.json("data/maps/municipios.topo.json", function(error, collection) {
-  state.selectAll("path")
-      .data(topojson.feature(collection, collection.objects.municipios).features)
-    .enter().append("svg:path")
-      .attr("d", path)
-      .on("click", function(n) { alert (n.properties.nome) });
-});
+}

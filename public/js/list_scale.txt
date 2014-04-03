@@ -1,0 +1,103 @@
+  acre
+    .scale(24000)
+    .translate([5100, -300]);
+  
+  alagoas
+    .scale(50000)
+    .translate([5450, -1050]);
+
+  amazonas
+    .scale(14000)
+    .translate([2900, 200]);
+
+  amapa
+    .scale(25000)
+    .translate([3950, 450]);
+
+  bahia
+    .scale(19000)
+    .translate([2600, -400]);
+    
+  ceara
+    .scale(30000)
+    .translate([3600, -100]);
+    
+  espirito santo 
+    .scale(41000)
+    .translate([4900, -1950]);
+
+  goias
+    .scale(24000)
+    .translate([3650, -700]);
+
+  maranhao
+    .scale(20000)
+    .translate([2800, 50]);
+
+  minas
+    .scale(20000)
+    .translate([2950, -700]);
+
+  mato grosso do sul
+    .scale(22000)
+    .translate([3680, -900]);
+
+  mato grosso
+    .scale(16000)
+    .translate([2850, -200]);
+
+  pará
+    .scale(14000)
+    .translate([2400, 200]);
+
+  paraíba
+    .scale(39000)
+    .translate([4300, -400]);
+
+  pernambuco
+    .scale(36000)
+    .translate([4200, -500]);
+
+  piaui
+    .scale(22000)
+    .translate([2900, -90]);
+
+  paraná
+    .scale(26000)
+    .translate([4050, -1500]);
+
+  rio de janeiro
+    .scale(42000)
+    .translate([5350, -2350]);
+
+  rio grande do norte
+    .scale(46000)
+    .translate([5050, -400]);
+
+  rondonia
+    .scale(22000)
+    .translate([4150, -350]);
+
+  roraima
+    .scale(21000)
+    .translate([3900, 450]);
+
+  rio grande do sul
+    .scale(24000)
+    .translate([3950, -1760]);
+
+  santa catarina
+    .scale(29000)
+    .translate([4450, -2000]);
+
+  sergipe
+    .scale(50000)
+    .translate([5450, -1150]);
+
+  sao paulo
+    .scale(24000)
+    .translate([3650, -1200]);
+
+  tocantins
+    .scale(20000)
+    .translate([3000, -150]);
