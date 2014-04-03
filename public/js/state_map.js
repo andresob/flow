@@ -17,7 +17,7 @@ var state = svg.append("svg:g")
     .attr("id", "state");
 
 //carrega o arquivo para desenhar o poligono
-d3.json("data/municipios.topo.json", function(error, collection) {
+d3.json("data/maps/municipios.topo.json", function(error, collection) {
   state.selectAll("path")
       .data(topojson.feature(collection, collection.objects.municipios).features)
     .enter().append("svg:path")

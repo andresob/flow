@@ -29,7 +29,7 @@ var carto = d3.cartogram()
 
 var vote_data = d3.map();
 
-d3.json("data/brasil.topo.json", function (data) {
+d3.json("data/maps/brasil.topo.json", function (data) {
     topology = data;
     geometries = topology.objects.states.geometries;
 

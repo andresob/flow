@@ -36,7 +36,8 @@ SVGElement.prototype.toggleClass = function (className) {
 };
 
 $(document).ready(function(){
-  $("#myTags").tagit({
+  //search node on graph view
+  $("#searchNode").tagit({
     tagSource: function(request, response){
       response(get_node_name("name", request.term));
     },
@@ -51,6 +52,21 @@ $(document).ready(function(){
     afterTagRemoved: function(event, ui){
       search(ui.tagLabel)
     }
+  });
+
+  //search state on map view
+  $("#searchState").tagit({
+    availableTags: ["Acre", "Alagoas", "Amazonas", "Amapá", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo", "Goias", "Maranhão", "Minas Gerais", "Mata Grosso do Sul", "Mato Grosso", "Pará", "Paraíba", "Pernambuco", "Piauí", "Paraná", "Rio de Janeiro", "Rio Grande do Norte", "Rondônia", "Roráima", "Rio Grande do Sul", "Santa Catarina", "Sergipe", "São Paulo", "Tocantis"],
+    tagLimit: 1,
+    caseSensitive: true,
+    allowSpaces: true,
+    onlyAvailableTags: true,
+    removeConfirmation: true,
+    autocomplete: {minLength: 3},
+    afterTagAdded: function(event, ui){
+      alert(ui.tagLabel)
+      //drawState(ui.tagLabel)
+    },
   });
 
   //set class active on menu
