@@ -30,7 +30,7 @@ function drawState (state) {
         .data(topojson.feature(collection, collection.objects.layer1).features)
       .enter().append("svg:path")
         .attr("d", path)
-        .on("click", function(n) { alert (n.properties.nome) });
+        .on("click", function(n) { alert (n.properties.NM_MUNICIP) });
   });
 
 }

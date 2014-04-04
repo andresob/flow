@@ -94,6 +94,14 @@
         color: #3f3f3f;
 }
 
+#stateInfo {
+  position: absolute;
+    margin: 100px 50px 0 0;
+     right: 0;
+     width: 300px;
+     float: right;
+}
+
 
 /* Definitions of deformed map visualization */
 
