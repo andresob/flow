@@ -1,9 +1,8 @@
 function drawState (state) {
-  
+
   d3.selectAll('#map > svg').remove();
 
   var stateFile = dicState (state);
-    console.log(stateFile);
 
   var width = window.innerWidth,
       height = window.innerHeight;
@@ -18,6 +17,9 @@ function drawState (state) {
   var svg = d3.select("#map").insert("svg:svg")
       .attr("width", width - 50)
       .attr("height", height -50);
+      
+  svg.append("svg:svg")
+    d3.select("#stateName").text(stateFile[3]).attr("class","animated fadeInLeft");
   
   var state = svg.append("svg:g")
       .attr("id", "state");

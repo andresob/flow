@@ -81,6 +81,19 @@
 
 /* End of definitions of map visualization */
 
+#stateName {
+  margin-left: 100px;
+     position: absolute;
+      display: block;
+        float: left;
+
+  font-family: Oswald, Helvetica, sans-serif;
+  line-height: 40px;
+  font-weight: 500;
+    font-size: 40px;
+        color: #3f3f3f;
+}
+
 
 /* Definitions of deformed map visualization */
 
