@@ -4,7 +4,7 @@ function drawState (state) {
 
   var stateFile = dicState (state);
 
-  var width = window.innerWidth,
+  var width = 800
       height = window.innerHeight;
   
   var projection = d3.geo.mercator()
@@ -15,7 +15,7 @@ function drawState (state) {
       .projection(projection);
   
   var svg = d3.select("#map").insert("svg:svg")
-      .attr("width", width - 50)
+      .attr("width", width)
       .attr("height", height -50);
       
   svg.append("svg:svg")
