@@ -2,14 +2,14 @@ var width = 300,
     height = 400;
 
 var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+    .rangeRoundBands([0, width], '.1');
 
 var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
     return "<span>" + d.NAME + ":" + d.INDEX + "</span>";
-  })
+  });
 
 var y = d3.scale.linear()
     .range([height, 0]);

@@ -2,13 +2,13 @@ function search_node(attr, value) {
   return flow.nodes.filter(function(n) {
     return n.name.toLowerCase().indexOf(value.toLowerCase()) >= 0;
   });
-};
+}
 
 function get_node_name(attr, value) {
   return search_node(attr, value).map(function(n) {
     return n.name;
   });
-};
+}
 
 SVGElement.prototype.hasClass = function (className) {
   return new RegExp('(\\s|^)' + className + '(\\s|$)').test(this.getAttribute('class'));
@@ -93,7 +93,7 @@ function dicState (a) {
    default:
       return alert ("Faça a busca novamente");
   }
-};
+}
 
 $(document).ready(function(){
   //search node on graph view
@@ -107,10 +107,10 @@ $(document).ready(function(){
     removeConfirmation: true,
     autocomplete: {minLength: 3},
     afterTagAdded: function(event, ui){
-      search(ui.tagLabel)
+      search(ui.tagLabel);
     },
     afterTagRemoved: function(event, ui){
-      search(ui.tagLabel)
+      search(ui.tagLabel);
     }
   });
 
@@ -125,7 +125,7 @@ $(document).ready(function(){
     autocomplete: {minLength: 1},
     afterTagAdded: function(event, ui){
       //alert(ui.tagLabel)
-      drawState(ui.tagLabel)
+      drawState(ui.tagLabel);
     },
   });
 

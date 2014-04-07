@@ -3,8 +3,8 @@ function drawState (state) {
   d3.selectAll('#map > svg').remove();
 
   var stateFile = dicState (state);
-
-  var width = 800
+  
+  var width = 800,
       height = window.innerHeight;
   
   var projection = d3.geo.mercator()
@@ -18,10 +18,9 @@ function drawState (state) {
       .attr("width", width)
       .attr("height", height -50);
       
-  svg.append("svg:svg")
-    d3.select("#stateName").text(stateFile[3]).attr("class","animated fadeInLeft");
+  d3.select("#stateName").text(stateFile[3]).attr("class","animated fadeInLeft");
   
-  var state = svg.append("svg:g")
+  state = svg.append("svg:g")
       .attr("id", "state");
   
   //carrega o arquivo para desenhar o poligono
@@ -30,7 +29,7 @@ function drawState (state) {
         .data(topojson.feature(collection, collection.objects.layer1).features)
       .enter().append("svg:path")
         .attr("d", path)
-        .on("click", function(n) { alert (n.properties.NM_MUNICIP) });
+        .on("click", function(n) { alert (n.properties.NM_MUNICIP); });
   });
 
 }

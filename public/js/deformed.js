@@ -13,7 +13,7 @@ var svg = d3.select("#deformed").insert("svg:svg")
     .attr("width", width - 50)
     .attr("height", height -100);
 
-var map = d3.select("#deformed")
+var map = d3.select("#deformed");
 
 var state = svg.append("g")
     .attr("id", "state")
@@ -50,8 +50,7 @@ d3.json("data/maps/brasil.topo.json", function (data) {
 d3.csv("data/brasil_def.csv", function (data) {
   data.forEach(function (d) {
       vote_data.set(d.STATE,[d.INDEX, d.NAME]);
-      console.log(vote_data);
-  })
+  });
 });
 
 function do_update() {
@@ -59,10 +58,10 @@ function do_update() {
     setTimeout(function () {
       
         carto.value(function (d) {
-            return +vote_data.get(d.properties["id"])[0];
+            return +vote_data.get(d.properties.id)[0];
         });
                 
-        if (carto_features == undefined) {
+        if (carto_features === undefined) {
             carto_features = carto(topology, geometries).features;
         }
 
