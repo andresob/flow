@@ -1,19 +1,18 @@
 var width = window.innerWidth,
     height = window.innerHeight;
 
-var projection = d3.geo.azimuthal()
-    .mode("stereographic")
-    .scale(1300)
+var projection = d3.geo.mercator()
+    .scale(4600)
     .translate([1100, 100]);
 
 var path = d3.geo.path()
     .projection(projection);
 
-var svg = d3.select("#deformed").insert("svg:svg")
+var svg = d3.select("#cartogram").insert("svg:svg")
     .attr("width", width - 50)
     .attr("height", height -100);
 
-var map = d3.select("#deformed");
+var map = d3.select("#cartogram");
 
 var state = svg.append("g")
     .attr("id", "state")

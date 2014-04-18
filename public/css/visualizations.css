@@ -103,13 +103,13 @@
 }
 
 
-/* Definitions of deformed map visualization */
+/* Definitions of cartogram map visualization */
 
-#deformed {
+#cartogram {
   margin: 50px 0 0 100px;
 }
 
-#deformed svg {
+#cartogram svg {
   position: absolute;
 }
 
@@ -127,4 +127,4 @@
   right: 100px;
 }
 
-/* End of definitions of deformed map visualization */
+/* End of definitions of cartogram map visualization */

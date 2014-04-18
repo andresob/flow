@@ -12,8 +12,8 @@ get '/maps' do
   haml :maps
 end
 
-get '/deformed' do
-  haml :deformed
+get '/cartogram' do
+  haml :cartogram
 end
 
 get '/heatmap' do
