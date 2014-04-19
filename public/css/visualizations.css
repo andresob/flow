@@ -128,3 +128,12 @@
 }
 
 /* End of definitions of cartogram map visualization */
+
+
+/* Definitions of heatmap visualization */
+
+.hexagons {
+  opacity: .9;
+}
+
+/* End of definitions of heatmap visualization */
