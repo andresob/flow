@@ -16,6 +16,19 @@ var svg = d3.select("#graph").append("svg")
     .attr("height", height)
     .attr("class", "back-white");
 
+    svg.append("svg:defs").selectAll("marker")
+        .data(["end"])
+      .enter().append("svg:marker")
+        .attr("id", String)
+        .attr("viewBox", "0 -5 10 10")
+        .attr("refX", 15)
+        .attr("refY", -1.5)
+        .attr("markerWidth", 4)
+        .attr("markerHeight", 4)
+        .attr("orient", "auto")
+      .append("svg:path")
+        .attr("d", "M0,-5L10,0L0,5");
+
 var force = d3.layout.force()
     .charge(-150)
     .linkDistance( function(d) { return (d.value/200 * 15); } )
@@ -26,27 +39,25 @@ var flow, focus;
 
 svg.call(tip);
 
-d3.json("data/data.json", function(error, graph) {
+d3.json("data/graph/data.json", function(error, graph) {
   force
       .nodes(graph.nodes)
       .links(graph.links)
       .start();
       flow = graph;
 
-  var link = svg.selectAll(".link")
+  var link = svg.append("svg:g").selectAll("path")
       .data(graph.links)
     .enter().append("line")
       .attr("class", "link")
       .style("stroke-width", function(d) { return Math.log(d.value)/4; })
-      .style('opacity', function(d) {
-              return d.target.module ? 0.2 : 0.3;
-                  });
+      .style('opacity', function(d) { return d.target.module ? 0.2 : 0.3; });
 
   var node = svg.selectAll(".node")
       .data(graph.nodes)
     .enter().append("circle")
       .attr("class", "node")
-      .attr("r", function(d) { return 1.5 * Math.sqrt(d.weight); })
+      .attr("r", function(d) { return 2 * Math.sqrt(d.weight); })
       .style("fill", function(d) { return color(d.group); })
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
@@ -61,7 +72,8 @@ d3.json("data/data.json", function(error, graph) {
             node.style('opacity', 1);
             link.style('opacity', function(d) {
                 return d.target.module ? 0.6 : 0.1;
-            });
+            })
+            .attr("marker-end", "none");
             focus = false;
           }
           else {
@@ -82,7 +94,8 @@ d3.json("data/data.json", function(error, graph) {
 
             link.style('opacity', function(l, i) {
                 return l.source.active && l.target.active ? 0.2 : 0.02;
-            });
+            })
+            .attr("marker-end", "url(#end)");
           }
       });
 
@@ -118,4 +131,5 @@ d3.json("data/data.json", function(error, graph) {
              (n.source == t && n.target == s);
              }).length !== 0;
   }
+  
 });

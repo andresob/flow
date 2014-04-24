@@ -4,6 +4,11 @@
   position: absolute;
 }
 
+#graph path.link {
+  fill: none;
+  stroke: #666;
+}
+
 .back-black {
   background: #3a3a3a;
 }
@@ -70,11 +75,11 @@
   stroke: #fafafa;
   stroke-width: .4px;
   stroke-linejoin: round;
-  fill: #3f3f3f;
+  fill: #bdbdbd;
 }
 
 #state path:hover {
-   fill: #5eab1f;
+   fill: #807dba;
    cursor: pointer;    
    pointer-events: all;
 }
@@ -132,8 +137,16 @@
 
 /* Definitions of heatmap visualization */
 
-.hexagons {
-  opacity: .9;
+#heatmap {
+  margin: 50px 0 0 100px
+}
+
+#circles {
+  fill: #3f3f3f;
+}
+
+.hexagon {
+  opacity: .35;
 }
 
 /* End of definitions of heatmap visualization */
