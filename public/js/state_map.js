@@ -23,13 +23,17 @@ function drawState (state) {
   state = svg.append("svg:g")
       .attr("id", "state");
   
-  //carrega o arquivo para desenhar o poligono
-  d3.json("data/maps/" + stateFile[2] + ".topo.json", function(error, collection) {
+  queue()
+    .defer(d3.json, "data/maps/" + stateFile[2] + ".topo.json")
+    .await(ready);
+
+  function ready(error, states) {
+
     state.selectAll("path")
-        .data(topojson.feature(collection, collection.objects.layer1).features)
-      .enter().append("svg:path")
-        .attr("d", path)
-        .on("click", function(n) { alert (n.properties.NM_MUNICIP); });
-  });
+       .data(topojson.feature(states, states.objects.layer1).features)
+     .enter().append("svg:path")
+       .attr("d", path);
+
+  } 
 
 }
