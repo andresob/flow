@@ -10,31 +10,6 @@ function get_node_name(attr, value) {
   });
 }
 
-SVGElement.prototype.hasClass = function (className) {
-  return new RegExp('(\\s|^)' + className + '(\\s|$)').test(this.getAttribute('class'));
-};
-
-SVGElement.prototype.addClass = function (className) {
-  if (!this.hasClass(className)) {
-    this.setAttribute('class', this.getAttribute('class') + ' ' + className);
-  }
-};
-
-SVGElement.prototype.removeClass = function (className) {
-  var removedClass = this.getAttribute('class').replace(new RegExp('(\\s|^)' + className + '(\\s|$)', 'g'), '$2');
-  if (this.hasClass(className)) {
-    this.setAttribute('class', removedClass);
-  }
-};
-
-SVGElement.prototype.toggleClass = function (className) {
-  if (this.hasClass(className)) {
-    this.removeClass(className);
-  } else {
-    this.addClass(className);
-  }
-};
-
 function dicState (a) {
 
   switch(a) {
@@ -142,8 +117,18 @@ $(document).ready(function(){
   //click to invert colors
   $('.downbar .invert').click(function (e){
     e.preventDefault();
-    var graph = document.querySelector('#graph svg');
-    graph.toggleClass('back-white');
-    graph.toggleClass('back-black');
+    $('body').toggleClass('black');
   });
+
+  //click to close info
+  $('.closeInfo').click(function (e){
+    e.preventDefault();
+    $('#intro').addClass('slideOutRight');
+  });
+  $('.info').click(function (e){
+    e.preventDefault();
+    $('#intro').removeClass('slideOutRight');
+    $('#intro').addClass('slideInRight');
+  });
+
 });

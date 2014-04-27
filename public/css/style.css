@@ -2,6 +2,32 @@ body {
   overflow: hidden;
 }
 
+#intro {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 40%;
+  z-index: 99999;
+  background-color: rgba(245,245,245,0.75);
+  overflow: scroll;
+  padding-top: 30px;
+}
+
+.closeInfo {
+  line-height: 61px;
+  vertical-align: middle;
+  font-weight: 200;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .2;
+  font-size: 21px;
+  color: #000;
+}
+
+.closeInfo:hover {
+  text-decoration: none;
+}
+
 /* Definition of sidebar */
 
 .sidebar {

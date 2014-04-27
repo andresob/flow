@@ -9,12 +9,8 @@
   stroke: #666;
 }
 
-.back-black {
+.black {
   background: #3a3a3a;
-}
-
-.back-white {
-  background: #fff;
 }
 
 .node {

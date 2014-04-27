@@ -25,6 +25,7 @@ function drawState (state) {
   
   queue()
     .defer(d3.json, "data/maps/" + stateFile[2] + ".topo.json")
+    .defer(d3.csv, "data/heatmap/coords.csv")
     .await(ready);
 
   function ready(error, states) {
