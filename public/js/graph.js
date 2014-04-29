@@ -35,7 +35,7 @@ var force = d3.layout.force()
     .gravity([1])
     .size([width, height]);
 
-var flow, focus;
+var flow, focus, total, unused;
 
 svg.call(tip);
 
@@ -142,4 +142,8 @@ d3.json("data/graph/data.json", function(error, graph) {
     }
   });
   
+  unused = flow.nodes.filter(function(n) { return n.weight == 0; }).length;
+  total = flow.nodes.length;
+
 });
+
