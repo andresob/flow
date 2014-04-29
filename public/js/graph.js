@@ -131,5 +131,15 @@ d3.json("data/graph/data.json", function(error, graph) {
              (n.source == t && n.target == s);
              }).length !== 0;
   }
+
+  d3.select("input[type=checkbox]").on("change", function() {
+    var n = d3.selectAll('.node').filter(function(n) { return n.weight == 0; });
+    if (d3.select("#check").node().checked) {
+      n.attr("r", "2");
+    }
+    else {
+      node.attr("r", function(d) { return 2 * Math.sqrt(d.weight); })
+    }
+  });
   
 });
