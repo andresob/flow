@@ -1,4 +1,4 @@
-var width = window.innerWidth,
+var width = window.innerWidth -100,
     height = window.innerHeight;
 
 var color = d3.time.scale()

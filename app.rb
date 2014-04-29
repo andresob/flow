@@ -1,7 +1,8 @@
 load 'partial.rb'
 
 get '/' do
-  haml :index
+  haml :index,
+  layout: :landpage
 end
 
 get '/graphs' do

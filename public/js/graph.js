@@ -1,5 +1,5 @@
 var width = window.innerWidth,
-    height = window.innerHeight;
+    height = window.innerHeight -20;
 
 var color = d3.scale.ordinal()
     .range(colorbrewer.Set3[12]);

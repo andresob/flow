@@ -1,4 +1,4 @@
-var width = window.innerWidth,
+var width = window.innerWidth -100,
     height = window.innerHeight;
 
 var projection = d3.geo.mercator()
