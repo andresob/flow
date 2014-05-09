@@ -145,5 +145,9 @@ d3.json("data/graph/data.json", function(error, graph) {
   unused = flow.nodes.filter(function(n) { return n.weight == 0; }).length;
   total = flow.nodes.length;
 
+  d3.select("#rate input").on("change", function() {
+    d3.select("#rate input").property("value");
+  });
+
 });
 

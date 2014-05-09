@@ -1,14 +1,9 @@
 var width = window.innerWidth -100,
     height = window.innerHeight;
 
-var color = d3.time.scale()
-    .domain([8, 13])
-    .range(colorbrewer['RdYlBu'][11])
-    .interpolate(d3.interpolateLab);
-
 var hexbin = d3.hexbin()
     .size([width, height])
-    .radius(3.5);
+    .radius(3.2);
 
 var projection = d3.geo.mercator()
     .scale(4500)
@@ -27,21 +22,32 @@ var state = svg.append("svg:g")
 var circles = svg.append("svg:g")
     .attr("id", "circles");
 
-d3.json("data/maps/brasil.topo.json", function (error, collection) {
- 
-    state.selectAll("path")
-        .data(topojson.feature(collection, collection.objects.states).features)
-      .enter().append("svg:path")
-      .attr("d", path);
-});
+var  numClasses = 9, hexI = 12;
+
+var averageFunction = function(d) {
+  var sum = 0;
+  d.forEach(function (entry) {
+    sum += entry[2];
+  });
+  return Math.floor(sum/d.length/1000)-1;
+};
 
 var positions = [], rate = [];
 
-d3.csv("data/heatmap/coordsBrasil.csv", function(data) {
+queue()
+  .defer(d3.json, "data/maps/brasil.topo.json" )
+  .defer(d3.csv, "data/heatmap/coordsBrasil.csv" )
+  .await(ready);
+
+function ready(error, collection, data) {
+ 
+  state.selectAll("path")
+      .data(topojson.feature(collection, collection.objects.states).features)
+    .enter().append("svg:path")
+    .attr("d", path);
 
   data.forEach(function(datum) {
-    positions.push(projection([+datum.lot, +datum.lat]));
-    positions.concat(+datum.output);
+    positions.push(projection([+datum.lot, +datum.lat]).concat(+datum.output));
   });
 
   var g = circles.selectAll("g")
@@ -56,13 +62,17 @@ d3.csv("data/heatmap/coordsBrasil.csv", function(data) {
       .attr("class", function(d) { return d.city; });
 
   svg.append("g")
-      .attr("class", "hexagons")
+      .attr("class", "hexagons YlOrRd")
     .selectAll("path")
       .data(hexbin(positions).sort(function(a, b) { return b.length - a.length; }))
     .enter().append("path")
       .attr("d", function(d) { return hexbin.hexagon(3); })
-      .style("fill", function(d) { return color(d3.median(d, function(d) { return +Math.log(100*d.output); })); })
-    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+      .attr("class", function(d)
+      {
+        var c = 'q' + ( (numClasses-1) - averageFunction(d)) + "-" + numClasses;
+        return c;
+      })
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
     .on("mouseover", function(d) 
     { 
       d3.select(this).attr("stroke", "#fff").attr("stroke-width", 2);
@@ -73,4 +83,4 @@ d3.csv("data/heatmap/coordsBrasil.csv", function(data) {
       d3.select(this).attr("stroke", "none");
     });
 
-});
+}
