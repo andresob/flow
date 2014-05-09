@@ -1,9 +1,10 @@
 var width = window.innerWidth -100,
     height = window.innerHeight;
 
+var  numClasses = 9, hexI = 12, radius = 9;
+
 var hexbin = d3.hexbin()
-    .size([width, height])
-    .radius(3.2);
+    .size([width, height]);
 
 var projection = d3.geo.mercator()
     .scale(4500)
@@ -22,8 +23,6 @@ var state = svg.append("svg:g")
 var circles = svg.append("svg:g")
     .attr("id", "circles");
 
-var  numClasses = 9, hexI = 12;
-
 var averageFunction = function(d) {
   var sum = 0;
   d.forEach(function (entry) {
@@ -41,6 +40,7 @@ queue()
 
 function ready(error, collection, data) {
  
+
   state.selectAll("path")
       .data(topojson.feature(collection, collection.objects.states).features)
     .enter().append("svg:path")
@@ -61,26 +61,42 @@ function ready(error, collection, data) {
       .style("fill", "white")
       .attr("class", function(d) { return d.city; });
 
-  svg.append("g")
-      .attr("class", "hexagons YlOrRd")
-    .selectAll("path")
-      .data(hexbin(positions).sort(function(a, b) { return b.length - a.length; }))
-    .enter().append("path")
-      .attr("d", function(d) { return hexbin.hexagon(3); })
-      .attr("class", function(d)
-      {
-        var c = 'q' + ( (numClasses-1) - averageFunction(d)) + "-" + numClasses;
-        return c;
-      })
-      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-    .on("mouseover", function(d) 
-    { 
-      d3.select(this).attr("stroke", "#fff").attr("stroke-width", 2);
+  drawHex();
 
-    })
-    .on("mouseout", function(d)
-    {
-      d3.select(this).attr("stroke", "none");
-    });
+  function drawHex () {
+      
+      d3.select(".hexagons").remove();
+
+      hexbin.radius( radius);
+
+      svg.append("g")
+          .attr("class", "hexagons YlOrRd")
+        .selectAll("path")
+          .data(hexbin(positions).sort(function(a, b) { return b.length - a.length; }))
+        .enter().append("path")
+          .attr("d", function(d) { return hexbin.hexagon(radius); })
+          .attr("class", function(d)
+          {
+            var c = 'q' + ( (numClasses-1) - averageFunction(d)) + "-" + numClasses;
+            return c;
+          })
+          .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+        .on("mouseover", function(d) 
+        { 
+          d3.select(this).attr("stroke", "#fff").attr("stroke-width", 2);
+
+        })
+        .on("mouseout", function(d)
+        {
+          d3.select(this).attr("stroke", "none");
+        });
+
+  }
+
+
+  d3.select("#rate input").on("change", function() {
+    radius = d3.select("#rate input").property("value");
+    drawHex(radius);
+  });
 
 }
