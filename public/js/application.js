@@ -120,15 +120,7 @@ $(document).ready(function(){
     $('body').toggleClass('black');
   });
 
-  //click to close info
-  $('.closeInfo').click(function (e){
-    e.preventDefault();
-    $('#intro').addClass('slideOutRight');
-  });
-  $('.info').click(function (e){
-    e.preventDefault();
-    $('#intro').removeClass('slideOutRight');
-    $('#intro').addClass('slideInRight');
-  });
-
+  //insert size on div
+  size = window.innerHeight
+  $("#graph").css("height",size);
 });

@@ -89,10 +89,15 @@ function ready(error, collection, data) {
         .on("mouseout", function(d)
         {
           d3.select(this).attr("stroke", "none");
-        });
+        })
+        .on("click", drawAuxHex);
 
   }
 
+  function drawAuxHex () {
+    alert("bla");
+
+  }
 
   d3.select("#rate input").on("change", function() {
     radius = d3.select("#rate input").property("value");

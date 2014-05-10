@@ -18,15 +18,7 @@ body {
 }
 
 #intro {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 40%;
-  z-index: 99999;
-  background-color: rgba(245,245,245,0.75);
-  overflow: scroll;
-  padding-top: 30px;
+  background: #F5F5F5;
 }
 
 .closeInfo {
