@@ -1,4 +1,15 @@
-.side-search.animated.fadeInRight
-  %ul#searchNode
-  %span.glyphicon.glyphicon-search.mag-glass
-
+#config.animated.fadeInRight
+  .row-fluid
+    .col-md-12
+      .side-search
+        %ul#searchNode
+        %span.glyphicon.glyphicon-search.mag-glass
+  .row-fluid
+    .col-md-12
+      %h4 Função Click
+      %span
+        %input{type: "checkbox", id: "check"}
+          Omitir Nós
+      #rate
+        %input{type: "range", min: "0", max: "200"}
+      #pie

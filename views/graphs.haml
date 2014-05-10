@@ -5,33 +5,23 @@
 = partial("config")
 
 #intro
-  .row-fluid
-    .col-md-12
-      .row
-        .col-md-11
-          %h2.title Grafo
-      %br
-      .row
-        .col-md-12
-          %p Alguns objetos são necessário para criação do grafo, os principais são os nós e as arestas.
-        .col-md-12
-          %p  O grafo em questão é composto por várias relações bidimensionais:
-          %ul
-            %li O tamanho do nó é proporcional ao número de incidências;
-            %li A força de atração entre os nós é proporcional ao relacionamento entre eles;
-            %li A espessura dos links é proporcional a quantidade de relacionamentos entre os nós;
-            %li A distância dos links é proporcional a relação entre os estados 
-      %hr
-      .row
-        .col-md-12
-          %h4 Função Click
-          %h4 Função Busca
-          %span
-            %input{type: "checkbox", id: "check"}
-              Omitir Nós
-          #rate
-            %input{type: "range", min: "0", max: "200"}
-          #pie
+  .container
+    .row-fluid
+      .col-md-12
+        .row
+          .col-md-11
+            %h2.title Grafo
+        %br
+        .row
+          .col-md-12
+            %p Alguns objetos são necessário para criação do grafo, os principais são os nós e as arestas.
+          .col-md-12
+            %p  O grafo em questão é composto por várias relações bidimensionais:
+            %ul
+              %li O tamanho do nó é proporcional ao número de incidências;
+              %li A força de atração entre os nós é proporcional ao relacionamento entre eles;
+              %li A espessura dos links é proporcional a quantidade de relacionamentos entre os nós;
+              %li A distância dos links é proporcional a relação entre os estados 
 
 %script{src:"js/graph.js"}
 %script{src:"js/graph_pie.js"}

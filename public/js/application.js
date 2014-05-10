@@ -108,10 +108,9 @@ $(document).ready(function(){
   $('.side-nav li a[href$="' + location.pathname.split("/")[1] + '"]').addClass('active');
 
   //click to hide menu and search bar
-  $('.downbar .hide-stuffs').click(function (e){
+  $('.downbar .hide-config').click(function (e){
     e.preventDefault();
-    $('.sidebar').toggleClass('fadeInDown bounceOutUp');
-    $('.side-search').toggleClass('fadeInRight bounceOutRight');
+    $('#config').toggleClass('fadeInRight bounceOutRight');
   });
 
   //click to invert colors
@@ -122,5 +121,5 @@ $(document).ready(function(){
 
   //insert size on div
   size = window.innerHeight
-  $("#graph").css("height",size);
+  $("#graph, #heatmap").css("height",size);
 });

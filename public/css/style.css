@@ -5,7 +5,7 @@
 
 body {
   font-family: proxima-nova, "Helvetica Neue", Helvetica, arial, sans-serif;
-  overflow: hidden;
+  overflow: auto;
 }
 
 #main-content {
@@ -19,6 +19,7 @@ body {
 
 #intro {
   background: #F5F5F5;
+  min-height: 500px;
 }
 
 .closeInfo {
@@ -169,12 +170,23 @@ body {
 
 /* Definition of tag selection */
 
-.side-search {
+#config {
   position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 320px;
+  z-index: 99999;
+  background-color: rgba(245,245,245,0.75);
+  overflow: scroll;
+  padding-top: 30px;
+}
+
+.side-search {
+  position: relative;
    z-index: 999;
-    margin: 50px 3.5%;
+    margin: 20px 10px;
     border: 1px solid rgba(51,51,51,0.4);
-     float: right;
      right: 0;
        top: 0;
 
@@ -205,7 +217,6 @@ body {
       padding: 0;
        margin: 0 30px 0 0;
        height: 40px;
-       width: 240px;
        border: none;
     
   list-style: none;
@@ -219,9 +230,10 @@ body {
 
 .side-search .mag-glass {
   background: #fff;
-  width: 25px;
+  width: 30px;
   height: 40px;
   margin: -1px 0;
+  padding: 0 6px;
 } 
 
 /* End of tag selection */
