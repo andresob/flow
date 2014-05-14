@@ -8,7 +8,7 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<span>" + d.name + "</span>";
+    return "<span>" + d.n + "</span>";
   });
 
 var svg = d3.select("#graph").append("svg")
@@ -31,7 +31,7 @@ var svg = d3.select("#graph").append("svg")
 
 var force = d3.layout.force()
     .charge(-150)
-    .linkDistance( function(d) { return (d.value/200 * 15); } )
+    .linkDistance( function(d) { return (d.v/200 * 15); } )
     .gravity([1])
     .size([width, height]);
 
@@ -39,7 +39,12 @@ var flow, focus, total, unused;
 
 svg.call(tip);
 
-d3.json("data/graph/data.json", function(error, graph) {
+queue()
+  .defer(d3.json, "data/graph/data.json")
+  .await(ready);
+
+function ready(error, graph) {
+
   force
       .nodes(graph.nodes)
       .links(graph.links)
@@ -50,7 +55,7 @@ d3.json("data/graph/data.json", function(error, graph) {
       .data(graph.links)
     .enter().append("line")
       .attr("class", "link")
-      .style("stroke-width", function(d) { return Math.log(d.value)/4; })
+      .style("stroke-width", function(d) { return Math.log(d.v)/4; })
       .style('opacity', function(d) { return d.target.module ? 0.2 : 0.3; });
 
   var node = svg.selectAll(".node")
@@ -58,14 +63,14 @@ d3.json("data/graph/data.json", function(error, graph) {
     .enter().append("circle")
       .attr("class", "node")
       .attr("r", function(d) { return 2 * Math.sqrt(d.weight); })
-      .style("fill", function(d) { return color(d.group); })
+      .style("fill", function(d) { return color(d.g); })
       .on('mouseover', tip.show)
       .on('mouseout', tip.hide)
       .call(force.drag)
       .on('click', function(d) {
           if (focus === d) {
             force.charge(-150)
-                 .linkDistance( function(d) { return (d.value/200 * 15); } )
+                 .linkDistance( function(d) { return (d.v/200 * 15); } )
                  .linkStrength(1)
                  .start();
 
@@ -100,7 +105,7 @@ d3.json("data/graph/data.json", function(error, graph) {
       });
 
   node.append("title")
-      .text(function(d) { return d.name; });
+      .text(function(d) { return d.n; });
 
   resize();
   d3.select(window).on("resize", resize);
@@ -146,8 +151,7 @@ d3.json("data/graph/data.json", function(error, graph) {
   total = flow.nodes.length;
 
   d3.select("#rate input").on("change", function() {
-    d3.select("#rate input").property("value");
+    d3.select("#rate input").property("v");
   });
 
-});
-
+}

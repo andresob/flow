@@ -31,4 +31,6 @@
 
 .header h1.logo .logo-title {
   vertical-align: middle;
+  font-family: Oswald, Helvetica, sans-serif;
+  letter-spacing: 4px;
 }

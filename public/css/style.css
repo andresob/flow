@@ -176,17 +176,18 @@ body {
   bottom: 0;
   right: 0;
   width: 320px;
-  z-index: 99999;
+  z-index: 999;
   background-color: rgba(245,245,245,0.75);
   overflow: scroll;
   padding-top: 30px;
+  min-height: 702px;
 }
 
 .side-search {
   position: relative;
    z-index: 999;
     margin: 20px 10px;
-    border: 1px solid rgba(51,51,51,0.4);
+    border: 2px solid #ddd;
      right: 0;
        top: 0;
 
@@ -195,10 +196,6 @@ body {
       -ms-border-radius: 1px;
        -o-border-radius: 1px;
           border-radius: 1px;
-
-  -webkit-box-shadow: 0 0 4px 1px rgba(0,0,0,0.09);
-     -moz-box-shadow: 0 0 4px 1px rgba(0,0,0,0.09);
-          box-shadow: 0 0 4px 1px rgba(0,0,0,0.09);
 
 } 
 
@@ -237,3 +234,153 @@ body {
 } 
 
 /* End of tag selection */
+
+/* Input */
+
+input[type="range"]{
+    -webkit-appearance: none;
+    -moz-apperance: none;
+    border-radius: 6px;
+    height: 6px;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(0.15, #94A14E),
+        color-stop(0.15, #C5C5C5)
+    );
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background-color: #E9E9E9;
+    border: 1px solid #CECECE;
+    border-radius: 2px;
+    height: 15px;
+    width: 15px;
+}
+
+/* Input */
+
+/* Pre code */
+
+pre {
+  display: block;
+  position: relative;
+  text-align: left;
+  font-size: .55em;
+  font-family: monospace;
+  line-height: 1.2em;
+  word-wrap: break-word;
+  border: none;
+}
+
+pre code {
+  display: block; padding: 0.5em;
+  background: #3F3F3F;
+  color: #DCDCDC;
+}
+
+pre .keyword,
+pre .tag,
+pre .css .class,
+pre .css .id,
+pre .lisp .title,
+pre .nginx .title,
+pre .request,
+pre .status,
+pre .clojure .attribute {
+  color: #E3CEAB;
+}
+
+pre .django .template_tag,
+pre .django .variable,
+pre .django .filter .argument {
+  color: #DCDCDC;
+}
+
+pre .number,
+pre .date {
+  color: #8CD0D3;
+}
+
+pre .dos .envvar,
+pre .dos .stream,
+pre .variable,
+pre .apache .sqbracket {
+  color: #EFDCBC;
+}
+
+pre .dos .flow,
+pre .diff .change,
+pre .python .exception,
+pre .python .built_in,
+pre .literal,
+pre .tex .special {
+  color: #EFEFAF;
+}
+
+pre .diff .chunk,
+pre .subst {
+  color: #8F8F8F;
+}
+
+pre .dos .keyword,
+pre .python .decorator,
+pre .title,
+pre .haskell .type,
+pre .diff .header,
+pre .ruby .class .parent,
+pre .apache .tag,
+pre .nginx .built_in,
+pre .tex .command,
+pre .prompt {
+    color: #efef8f;
+}
+
+pre .dos .winutils,
+pre .ruby .symbol,
+pre .ruby .symbol .string,
+pre .ruby .string {
+  color: #DCA3A3;
+}
+
+pre .diff .deletion,
+pre .string,
+pre .tag .value,
+pre .preprocessor,
+pre .built_in,
+pre .sql .aggregate,
+pre .javadoc,
+pre .smalltalk .class,
+pre .smalltalk .localvars,
+pre .smalltalk .array,
+pre .css .rules .value,
+pre .attr_selector,
+pre .pseudo,
+pre .apache .cbracket,
+pre .tex .formula {
+  color: #CC9393;
+}
+
+pre .shebang,
+pre .diff .addition,
+pre .comment,
+pre .java .annotation,
+pre .template_comment,
+pre .pi,
+pre .doctype {
+  color: #7F9F7F;
+}
+
+pre .coffeescript .javascript,
+pre .javascript .xml,
+pre .tex .formula,
+pre .xml .javascript,
+pre .xml .vbscript,
+pre .xml .css,
+pre .xml .cdata {
+  opacity: 0.5;
+}
+
+/* Pre code */

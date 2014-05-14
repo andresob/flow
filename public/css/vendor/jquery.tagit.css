@@ -10,7 +10,7 @@ ul.tagit li.tagit-choice {
     position: absolute;
     float: left;
     height: inherit;
-    width: 270px;
+    width: 265px;
     z-index: 10;
 }
 ul.tagit li.tagit-choice span {
@@ -99,11 +99,9 @@ ul.tagit .tagit-new {
 .tagit-autocomplete .ui-menu .ui-menu-item a.ui-state-active {
     font-weight: normal;
 }
-.tagit-autocomplete.ui-widget-content { border: 1px solid #aaaaaa; background: #ffffff 50% 50% repeat-x; color: #333; opacity: 0.8; width: 271px; }
+.tagit-autocomplete.ui-widget-content { border: 2px solid #ddd; background: #fff; color: #333; width: 271px; }
 .tagit-autocomplete.ui-corner-all, .tagit-autocomplete .ui-corner-all { -moz-border-radius: 1px; -webkit-border-radius: 1px; -khtml-border-radius: 1px; border-radius: 1px; border-bottom: 1px solid rgba(51,51,51,0.1);}
 .tagit-autocomplete .ui-state-hover, .tagit-autocomplete .ui-state-focus { background: #fafafa; font-weight: normal; color: #212121; }
 
 .tagit-autocomplete .ui-widget-content { border: 1px solid rgba(51,51,51,0.4); }
 .tagit .ui-helper-hidden-accessible { position: absolute !important; clip: rect(1px,1px,1px,1px); }
-
-

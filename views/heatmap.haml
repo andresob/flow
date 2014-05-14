@@ -1,3 +1,5 @@
+=partial ("configHeat")
+
 #heatmap
 
 #centered
@@ -20,12 +22,5 @@
               %li A força de atração entre os nós é proporcional ao relacionamento entre eles;
               %li A espessura dos links é proporcional a quantidade de relacionamentos entre os nós;
               %li A distância dos links é proporcional a relação entre os estados 
-        %hr
-        .row
-          .col-md-12
-            %h4 Escolha o raio
-            %span
-            #rate
-              %input{type: "range", min: "3", max: "15"}
 
 %script{src: "js/heatmap.js"}

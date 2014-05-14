@@ -82,10 +82,10 @@ $(document).ready(function(){
     removeConfirmation: true,
     autocomplete: {minLength: 3},
     afterTagAdded: function(event, ui){
-      search(ui.tagLabel);
+      search_node(ui.tagLabel);
     },
     afterTagRemoved: function(event, ui){
-      search(ui.tagLabel);
+      search_node(ui.tagLabel);
     }
   });
 
@@ -121,5 +121,17 @@ $(document).ready(function(){
 
   //insert size on div
   size = window.innerHeight
-  $("#graph, #heatmap").css("height",size);
+  $("#graph, #heatmap, #map, #cartogram").css("height",size);
+
+  //input options
+  $('input[type="range"]').change(function () {
+    var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
+    
+    $(this).css('background-image',
+                '-webkit-gradient(linear, left top, right top, '
+                + 'color-stop(' + val + ', #94A14E), '
+                + 'color-stop(' + val + ', #C5C5C5)'
+                + ')'
+                );
+  });
 });

@@ -1,5 +1,9 @@
 /* Definitions of graph visualization */
 
+#graph {
+  min-height: 702px;
+}
+
 #graph svg {
   position: absolute;
 }
@@ -76,7 +80,8 @@
 /* Definitions of map visualization */
 
 #map {
-  margin: 50px 0 0 100px;
+  min-height: 702px;
+  padding: 50px 0 0 100px;
 }
 
 #map svg {
@@ -84,17 +89,42 @@
   margin: 0;
   padding: 0;
 }
-#state path {
-  stroke: #fafafa;
-  stroke-width: .4px;
-  stroke-linejoin: round;
-  fill: #bdbdbd;
+
+.states {
+  fill: #ccc;
 }
 
-#state path:hover {
-   fill: #807dba;
-   cursor: pointer;    
-   pointer-events: all;
+.state-borders {
+  stroke: #fff;
+  stroke-width: 1.2px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.city-arcs {
+  display: none;
+  fill: none;
+  stroke: #000;
+}
+
+.city-cell {
+  fill: none;
+  pointer-events: all;
+}
+
+.cities circle {
+  fill: steelblue;
+  stroke: #fff;
+  pointer-events: none;
+}
+
+.city:hover .city-arcs {
+  display: inline;
+}
+
+svg:not(:hover) .city-cell {
+  stroke: #000;
+  stroke-opacity: .2;
 }
 
 /* End of definitions of map visualization */
@@ -120,11 +150,34 @@
      float: right;
 }
 
+#intro {
+  font-family: Oswald, Helvetica, sans-serif;
+  line-height: 30px;
+  font-weight: 500;
+    font-size: 16px;
+        color: #3f3f3f;
+      padding: 0 12px;
+}
+
 
 /* Definitions of cartogram map visualization */
 
+#state path {
+  stroke: #fafafa;
+  stroke-width: .4px;
+  stroke-linejoin: round;
+  fill: #bdbdbd;
+}
+
+#state path:hover {
+   fill: #807dba;
+   cursor: pointer;    
+   pointer-events: all;
+}
+
 #cartogram {
-  margin: 50px 0 0 100px;
+  min-height: 702px;
+  padding: 50px 0 0 100px;
 }
 
 #cartogram svg {
@@ -151,6 +204,7 @@
 /* Definitions of heatmap visualization */
 
 #heatmap {
+  min-height: 702px;
   padding: 50px 0 0 100px
 }
 
