@@ -1,4 +1,4 @@
-var width = window.innerWidth,
+var width = window.innerWidth - 100,
     height = window.innerHeight -20;
 
 var color = d3.scale.ordinal()

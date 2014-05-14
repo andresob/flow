@@ -5,7 +5,8 @@
 
 body {
   font-family: proxima-nova, "Helvetica Neue", Helvetica, arial, sans-serif;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 #main-content {
