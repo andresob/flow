@@ -125,6 +125,18 @@ $(document).ready(function(){
 
 	//custom slider
 	$(".slider").slider();
+
+  $(".sliderMin").slider({
+    range: "min",
+    value: 9,
+    min: 3,
+    max: 15,
+    slide: function( event, ui ) {
+      $( ".sliderMinLabel" ).html( ui.value );
+      $(".ui-slider-range.ui-widget-header.ui-corner-all.ui-slider-range-min").css("width", (ui.value-3)/12*100 + "%");
+    }
+  });
+
 	$( ".sliderRange" ).slider({
 		range: true,
 		min: 1,

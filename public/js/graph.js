@@ -154,4 +154,6 @@ function ready(error, graph) {
     d3.select("#rate input").property("v");
   });
 
+  pieGraph();
+
 }
