@@ -134,6 +134,9 @@ $(document).ready(function(){
     slide: function( event, ui ) {
       $( ".sliderMinLabel" ).html( ui.value );
       $(".ui-slider-range.ui-widget-header.ui-corner-all.ui-slider-range-min").css("width", (ui.value-3)/12*100 + "%");
+    },
+    change: function(event, ui) {
+      drawHex(ui.value);
     }
   });
 

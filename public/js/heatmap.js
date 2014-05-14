@@ -61,47 +61,41 @@ function ready(error, collection, data) {
       .style("fill", "white")
       .attr("class", function(d) { return d.city; });
 
-  drawHex();
+  drawHex(radius);
+}
 
-  function drawHex () {
+function drawHex (radius) {
       
-      d3.select(".hexagons").remove();
+  d3.select(".hexagons").remove();
 
-      hexbin.radius( radius);
+  hexbin.radius(radius);
 
-      svg.append("g")
-          .attr("class", "hexagons YlOrRd")
-        .selectAll("path")
-          .data(hexbin(positions).sort(function(a, b) { return b.length - a.length; }))
-        .enter().append("path")
-          .attr("d", function(d) { return hexbin.hexagon(radius); })
-          .attr("class", function(d)
-          {
-            var c = 'q' + ( (numClasses-1) - averageFunction(d)) + "-" + numClasses;
-            return c;
-          })
-          .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-        .on("mouseover", function(d) 
-        { 
-          d3.select(this).attr("stroke", "#fff").attr("stroke-width", 2);
+  svg.append("g")
+      .attr("class", "hexagons YlOrRd")
+    .selectAll("path")
+      .data(hexbin(positions).sort(function(a, b) { return b.length - a.length; }))
+    .enter().append("path")
+      .attr("d", function(d) { return hexbin.hexagon(radius); })
+      .attr("class", function(d)
+      {
+        var c = 'q' + ( (numClasses-1) - averageFunction(d)) + "-" + numClasses;
+        return c;
+      })
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+    .on("mouseover", function(d) 
+    { 
+      d3.select(this).attr("stroke", "#fff").attr("stroke-width", 2);
 
-        })
-        .on("mouseout", function(d)
-        {
-          d3.select(this).attr("stroke", "none");
-        })
-        .on("click", drawAuxHex);
+    })
+    .on("mouseout", function(d)
+    {
+      d3.select(this).attr("stroke", "none");
+    })
+    .on("click", drawAuxHex);
 
-  }
+}
 
-  function drawAuxHex () {
-    alert("bla");
-
-  }
-
-  d3.select("#rate input").on("change", function() {
-    radius = d3.select("#rate input").property("value");
-    drawHex(radius);
-  });
+function drawAuxHex () {
+  alert("bla");
 
 }
