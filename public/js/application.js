@@ -123,15 +123,17 @@ $(document).ready(function(){
   size = window.innerHeight
   $("#graph, #heatmap, #map, #cartogram").css("height",size);
 
-  //input options
-  $('input[type="range"]').change(function () {
-    var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
-    
-    $(this).css('background-image',
-                '-webkit-gradient(linear, left top, right top, '
-                + 'color-stop(' + val + ', #94A14E), '
-                + 'color-stop(' + val + ', #C5C5C5)'
-                + ')'
-                );
-  });
+	//custom slider
+	$(".slider").slider();
+	$( ".sliderRange" ).slider({
+		range: true,
+		min: 1,
+		max: 20000,
+		values: [ 5000, 10000 ],
+		slide: function( event, ui ) {
+			$( ".sliderRangeLabel" ).html(ui.values[ 0 ] + " até " + ui.values[ 1 ] );
+      $(".ui-slider-range.ui-widget-header.ui-corner-all").css("left", ui.values[0]/20000*100 + "%");
+      $(".ui-slider-range.ui-widget-header.ui-corner-all").css("width", (ui.values[1]-ui.values[0])/20000*100 + "%");
+		}
+	});
 });

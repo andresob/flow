@@ -6,10 +6,20 @@
         %span.glyphicon.glyphicon-search.mag-glass
   .row-fluid
     .col-md-12
-      %h4 Função Click
-      %span
-        %input{type: "checkbox", id: "check"}
-          Omitir Nós
-      #rate
-        %input{type: "range", min: "1", max: "20000", step: "100"}
-      #pie
+      #introR 
+        %h5 Relações analizadas pelo total
+        %span
+          %input{type: "checkbox", id: "check"}
+            Mostrar todos os nós
+        #rate.marginInfo
+          %h5 Escolha limites de migrações:
+          .slider.slim.slider-warning.sliderRange.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all{"aria-disabled" => "true"}
+            %a.ui-slider-handle.ui-state-default.ui-corner-all{href: "#"}
+            .ui-slider-range.ui-widget-header.ui-corner-all{style: "left: 25%; width: 25%;"}
+            %a.ui-slider-handle.ui-state-default.ui-corner-all{href: "#"}
+          %br
+          .field_notice
+            Range:
+            %span.must.sliderRangeLabel
+              5000 até 10000
+      #pie.marginInfo
