@@ -137,9 +137,9 @@ function ready(error, graph) {
              }).length !== 0;
   }
 
-  d3.select("input[type=checkbox]").on("change", function() {
+  d3.select(".switch-label").on("click", function() {
     var n = d3.selectAll('.node').filter(function(n) { return n.weight == 0; });
-    if (d3.select("#check").node().checked) {
+    if (d3.select(".switch-label").classed("switchOn")) {
       n.attr("r", "2");
     }
     else {

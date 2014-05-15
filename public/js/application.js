@@ -151,4 +151,9 @@ $(document).ready(function(){
       $(".ui-slider-range.ui-widget-header.ui-corner-all").css("width", (ui.values[1]-ui.values[0])/20000*100 + "%");
 		}
 	});
+
+  //toggle class input
+  $(".switch-label").on("click", function() {
+    $(this).toggleClass("switchOff switchOn");
+  });
 });

@@ -7,10 +7,17 @@
   .row-fluid
     .col-md-12
       #introR 
-        %h5 Relações analizadas pelo total
-        %span
-          %input{type: "checkbox", id: "check"}
-            Mostrar todos os nós
+        .row
+          .col-md-12
+            %h5 Relações analizadas pelo total
+            .col-md-4
+              %label.switch.switch-warning
+                %input.switch-input{type: "checkbox"}/
+                %span.switch-label.switchOff{"data-off" => "Off", "data-on" => "On"}
+                %span.switch-handle
+            .col-md-8
+              %span
+                %h6 *Mostrar todos os nós
         #rate.marginInfo
           %h5 Escolha limites de migrações:
           .slider.slim.slider-warning.sliderRange.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all{"aria-disabled" => "true"}
