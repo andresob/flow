@@ -1,15 +1,3 @@
-function search_node(attr, value) {
-  return flow.nodes.filter(function(n) {
-    return n.name.toLowerCase().indexOf(value.toLowerCase()) >= 0;
-  });
-}
-
-function get_node_name(attr, value) {
-  return search_node(attr, value).map(function(n) {
-    return n.name;
-  });
-}
-
 function dicState (a) {
 
   switch(a) {
@@ -70,6 +58,18 @@ function dicState (a) {
   }
 }
 
+function search_node(attr, value) {
+  return flow.nodes.filter(function(n) {
+    return n.name.toLowerCase().indexOf(value.toLowerCase()) >= 0;
+  });
+}
+
+function get_node_name(attr, value) {
+  return search_node(attr, value).map(function(n) {
+    return n.name;
+  });
+}
+
 $(document).ready(function(){
   //search node on graph view
   $("#searchNode").tagit({
@@ -78,11 +78,13 @@ $(document).ready(function(){
     },
     tagLimit: 1,
     allowSpaces: true,
+    caseSensitive: false,
     onlyAvailableTags: true,
     removeConfirmation: true,
     autocomplete: {minLength: 3},
     afterTagAdded: function(event, ui){
       search_node(ui.tagLabel);
+      alert(ui.tagLabel);
     },
     afterTagRemoved: function(event, ui){
       search_node(ui.tagLabel);
@@ -120,7 +122,7 @@ $(document).ready(function(){
   });
 
   //insert size on div
-  size = window.innerHeight
+  size = window.innerHeight;
   $("#graph, #heatmap, #map, #cartogram").css("height",size);
 
 	//custom slider

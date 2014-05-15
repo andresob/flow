@@ -22,7 +22,7 @@ function drawState (state) {
       .attr("width", width)
       .attr("height", height);
   
-  var state = svg.append("svg:g")
+  state = svg.append("svg:g")
         .attr("class", "states state-borders");
   
   d3.select("#stateName").text(stateFile[3]).attr("class","animated fadeInLeft");
@@ -93,7 +93,17 @@ function drawState (state) {
       .selectAll("path")
         .data(function(d) { return d.outgoing; })
       .enter().append("path")
-        .attr("d", function(d) { return path({type: "LineString", coordinates: [d.source, d.target]}); });
+        .attr("d", function(d) { 
+            var dx = d.target.x - d.source.x,
+            dy = d.target.y - d.source.y,
+            dr = Math.sqrt(dx * dx + dy * dy);
+            return "M" + 
+              d.source.x + "," + 
+              d.source.y + "A" + 
+              dr + "," + dr + " 0 0,1 " + 
+              d.target.x + "," + 
+              d.target.y;
+        });
   
     city.append("circle")
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })

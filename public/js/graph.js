@@ -8,7 +8,7 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<span>" + d.n + "</span>";
+    return "<span>" + d.name + "</span>";
   });
 
 var svg = d3.select("#graph").append("svg")
@@ -61,7 +61,7 @@ function ready(error, graph) {
   var node = svg.selectAll(".node")
       .data(graph.nodes)
     .enter().append("circle")
-      .attr("class", "node")
+      .attr("class", function(d) { return "node " + d.name; })
       .attr("r", function(d) { return 2 * Math.sqrt(d.weight); })
       .style("fill", function(d) { return color(d.g); })
       .on('mouseover', tip.show)
@@ -138,21 +138,17 @@ function ready(error, graph) {
   }
 
   d3.select(".switch-label").on("click", function() {
-    var n = d3.selectAll('.node').filter(function(n) { return n.weight == 0; });
+    var n = d3.selectAll('.node').filter(function(n) { return n.weight === 0; });
     if (d3.select(".switch-label").classed("switchOn")) {
       n.attr("r", "2");
     }
     else {
-      node.attr("r", function(d) { return 2 * Math.sqrt(d.weight); })
+      node.attr("r", function(d) { return 2 * Math.sqrt(d.weight); });
     }
   });
   
-  unused = flow.nodes.filter(function(n) { return n.weight == 0; }).length;
+  unused = flow.nodes.filter(function(n) { return n.weight === 0; }).length;
   total = flow.nodes.length;
-
-  d3.select("#rate input").on("change", function() {
-    d3.select("#rate input").property("v");
-  });
 
   pieGraph();
 

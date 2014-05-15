@@ -91,12 +91,12 @@
 }
 
 .states {
-  fill: #ccc;
+  fill: #728387;
 }
 
 .state-borders {
   stroke: #fff;
-  stroke-width: 1.2px;
+  stroke-width: 0.9px;
   stroke-linejoin: round;
   stroke-linecap: round;
 }
@@ -104,16 +104,20 @@
 .city-arcs {
   display: none;
   fill: none;
-  stroke: #000;
+  stroke: #384042;
 }
 
+.city-arcs path {
+  stroke-dasharray: 0,2 2;
+  stroke-width: 1.1px;
+}
 .city-cell {
   fill: none;
   pointer-events: all;
 }
 
 .cities circle {
-  fill: steelblue;
+  fill: #fa603d;
   stroke: #fff;
   pointer-events: none;
 }
