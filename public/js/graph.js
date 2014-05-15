@@ -138,7 +138,7 @@ function ready(error, graph) {
   }
 
   d3.select(".switch-label").on("click", function() {
-    var n = d3.selectAll('.node').filter(function(n) { return n.weight === 0; });
+    var n = d3.selectAll('.node').filter(function(n) { return n.weight == 0; });
     if (d3.select(".switch-label").classed("switchOn")) {
       n.attr("r", "2");
     }
