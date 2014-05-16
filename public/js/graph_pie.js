@@ -36,6 +36,6 @@ function pieGraph (total, unused) {
   var pieLabel = center_group.append("svg:text")
       .attr("dy", ".35em").attr("class", "chartLabel")
       .attr("text-anchor", "middle")
-      .text((data[1]/data[0]).toFixed(4) * 100 + "%");
+      .text((data[1]/data[0]).toFixed(2) * 100 + "%");
   
 }

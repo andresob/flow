@@ -32,22 +32,25 @@ var svg = d3.select("#graph").append("svg")
 var force = d3.layout.force()
     .charge(-150)
     .linkStrength(1)
-    .linkDistance( function(d) { return (d.v/200 * 15); } )
+    .linkDistance( function(d) { return (d.v/200); } )
     .gravity([1])
     .size([width, height]);
 
-var flow, focus, total, unused, Link, Nodes, min = 100, max = 1000;
+var flow, focus, total, unused, Link, Nodes, min = 5000, max = 120610;
 
 svg.call(tip);
 
 queue()
-  .defer(d3.json, "data/graph/data.json")
+  .defer(d3.json, "data/graph/link1991.json")
   .await(ready);
 
 function ready(error, graph) {
 
   flow = graph
-  drawGraph(graph.links, graph.nodes);
+  Link = graph.links.filter(function(d) { return d.v > min && d.v < max });
+  Nodes = graph.nodes;
+  drawGraph(Link, Nodes);
+  console.log(Link);
 
 }
 
@@ -87,7 +90,7 @@ function drawGraph(linkValue, nodeValue ) {
       .on('click', function(d) {
           if (focus === d) {
             force.charge(-150)
-                 .linkDistance( function(d) { return (d.v/200 * 15); } )
+                 .linkDistance( function(d) { return (d.v/200); } )
                  .linkStrength(1)
                  .start();
 
