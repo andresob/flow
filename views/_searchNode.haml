@@ -9,7 +9,18 @@
       #introR 
         .row
           .col-md-12
-            %h5 Relações analisadas pelo total
+            %h5 Escolha o ano de análise
+            .pickDate.bordered
+              %a.pick
+                1991
+              %a.pick
+                2000
+              %a.pick
+                2010
+        .row
+          .col-md-12
+            #relations.marginInfo
+              %h5 Relações analisadas pelo total
             .col-md-4
               %label.switch.switch-warning
                 %input.switch-input{type: "checkbox"}/
@@ -29,5 +40,7 @@
             Range:
             %span.must.sliderRangeLabel
               5000 até 10000
-      #pie.marginInfo
-        %h5 Tamanho da amostra analisada
+        .row
+          .col-md-12
+            #pie.marginInfo
+              %h5 Tamanho da amostra analisada

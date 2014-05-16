@@ -156,4 +156,10 @@ $(document).ready(function(){
     }
 	});
 
+  //color button pickDate
+  $(".pick").click(function(d) {
+    $(".pick").removeClass("active");
+    $(this).addClass("active");
+  });
+
 });

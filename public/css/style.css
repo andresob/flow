@@ -236,6 +236,34 @@ body {
 
 /* End of tag selection */
 
+/* Pick date */
+
+.pickDate.bordered a {
+  border: 2px solid #C6C6C6;
+  padding: 6px;
+  margin: 0 60px 0 0;
+  -webkit-transition: all .1s ease-in-out;
+  -moz-transition: all .1s ease-in-out;
+  -o-transition: all .1s ease-in-out;
+  transition: all .1s ease-in-out;
+}
+.pickDate.bordered a:hover {
+  background-color: rgba(51,51,51,0.1);
+}
+.pickDate a {
+  text-decoration: none;
+  background: #dcdcdc;
+  color: #3f3f3f;
+  cursor: pointer;
+}
+.pick.active {
+  background-color: #fabb3d;
+  color: #fff;
+}
+
+
+/* End of pick date */
+
 /* Pre code */
 
 pre {
