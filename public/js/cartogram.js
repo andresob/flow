@@ -2,8 +2,8 @@ var width = window.innerWidth -100,
     height = window.innerHeight;
 
 var projection = d3.geo.mercator()
-    .scale(4500)
-    .translate([1050, 150]);
+    .scale(700)
+    .translate([1050, 100]);
 
 var path = d3.geo.path()
     .projection(projection);
@@ -46,7 +46,7 @@ d3.json("data/maps/brasil.topo.json", function (data) {
     d3.select("#click_to_run").text("Clique AQUI para iniciar");
 });
 
-d3.csv("data/brasil_def.csv", function (data) {
+d3.csv("data/cartogram/brasil_def.csv", function (data) {
   data.forEach(function (d) {
       vote_data.set(d.STATE,[d.INDEX, d.NAME]);
   });

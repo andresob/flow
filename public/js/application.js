@@ -58,14 +58,14 @@ function dicState (a) {
   }
 }
 
-function search_node(attr, value) {
+function search_node(value) {
   return flow.nodes.filter(function(n) {
     return n.name.toLowerCase().indexOf(value.toLowerCase()) >= 0;
   });
 }
 
-function get_node_name(attr, value) {
-  return search_node(attr, value).map(function(n) {
+function get_node_name(value) {
+  return search_node(value).map(function(n) {
     return n.name;
   });
 }
@@ -74,17 +74,16 @@ $(document).ready(function(){
   //search node on graph view
   $("#searchNode").tagit({
     tagSource: function(request, response){
-      response(get_node_name("name", request.term));
+      response(get_node_name(request.term));
     },
     tagLimit: 1,
-    allowSpaces: true,
+    allowSpaces: false,
     caseSensitive: false,
     onlyAvailableTags: true,
     removeConfirmation: true,
     autocomplete: {minLength: 3},
     afterTagAdded: function(event, ui){
       search_node(ui.tagLabel);
-      alert(ui.tagLabel);
     },
     afterTagRemoved: function(event, ui){
       search_node(ui.tagLabel);
@@ -151,11 +150,10 @@ $(document).ready(function(){
 			$( ".sliderRangeLabel" ).html(ui.values[ 0 ] + " até " + ui.values[ 1 ] );
       $(".ui-slider-range.ui-widget-header.ui-corner-all").css("left", ui.values[0]/20000*100 + "%");
       $(".ui-slider-range.ui-widget-header.ui-corner-all").css("width", (ui.values[1]-ui.values[0])/20000*100 + "%");
-		}
+		},
+    change: function(event, ui) {
+      rangeLinks(ui.values[0], ui.values[1], flow);
+    }
 	});
 
-  //toggle class input
-  $(".switch-label").on("click", function() {
-    $(this).toggleClass("switchOff switchOn");
-  });
 });

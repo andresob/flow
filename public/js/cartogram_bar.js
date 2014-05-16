@@ -30,7 +30,7 @@ var svg = d3.select("#bar").append("svg")
 
 svg.call(tip);
 
-d3.csv("data/brasil_def.csv", type, function(error, data) {
+d3.csv("data/cartogram/brasil_def.csv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.STATE; }));
   y.domain([0, d3.max(data, function(d) { return d.INDEX; })]);
 
