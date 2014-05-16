@@ -137,6 +137,10 @@ function drawGraph(linkValue, nodeValue ) {
         .attr("cy", function(d) { return d.y; });
   });
 
+  total = flow.nodes.length;
+  unused = flow.nodes.filter(function(d) { return d.weight != 0 }).length;
+  pieGraph(total, unused);
+
 }
 
 function resize() {
@@ -168,4 +172,3 @@ d3.select(".switch-label").on("click", function() {
     d3.select(".switch-label").attr("class", "switch-label switchOff");
   }
 });
-  
