@@ -4,7 +4,7 @@ function pieGraph (total, unused) {
 
   var data = [total,unused ];
 
-  var color = ["#ef8a62", "#67a9cf"];
+  var color = ["#D9D9D9", "#fbcc6f"];
   
   var width = 220,
       height = 220,
