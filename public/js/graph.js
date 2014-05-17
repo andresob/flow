@@ -156,7 +156,7 @@ function resize() {
 }
 
 function connected(s, t) {
-  return flow.links.filter( function(n) {
+  return Link.filter( function(n) {
     return (s === t) ||
            (n.source == s && n.target == t) ||
            (n.source == t && n.target == s);

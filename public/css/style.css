@@ -238,10 +238,13 @@ body {
 
 /* Pick date */
 
+.pick.middle {
+  margin: 0 60px;
+}
+
 .pickDate.bordered a {
   border: 2px solid #C6C6C6;
   padding: 6px;
-  margin: 0 60px 0 0;
   -webkit-transition: all .1s ease-in-out;
   -moz-transition: all .1s ease-in-out;
   -o-transition: all .1s ease-in-out;
