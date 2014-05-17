@@ -7,8 +7,8 @@ var hexbin = d3.hexbin()
     .size([width, height]);
 
 var projection = d3.geo.mercator()
-    .scale(4500)
-    .translate([1050, 150]);
+    .scale(700)
+    .translate([1050, 100]);
 
 var path = d3.geo.path()
     .projection(projection);

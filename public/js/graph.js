@@ -2,13 +2,30 @@ var width = window.innerWidth - 100,
     height = window.innerHeight -20;
 
 var color = d3.scale.ordinal()
-    .range(colorbrewer.Set3[12]);
+    .range(colorbrewer.RdYlBu[5]);
+
+var regions = ["Norte", "Nordeste", "Sudeste", "Sul", "C. Oeste"];
+
+var legend = d3.select('#legend')
+      .append('ul')
+       .attr('class', 'legend');
+
+var keys = legend.selectAll('li.key')
+    .data(color.range());
+
+keys.enter().append('li')
+    .attr('class', 'key')
+    .style('background-color', String);
+
+keys.append('span')
+    .attr('class', 'regions')
+    .text(function(d,i) { return regions[i] });
 
 var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<span>" + d.name + "</span>";
+    return "<span>" + d.n + " | " + d.s + "</span>";
   });
 
 var svg = d3.select("#graph").append("svg")
@@ -50,7 +67,6 @@ function ready(error, graph) {
   Link = graph.links.filter(function(d) { return d.v > min && d.v < max });
   Nodes = graph.nodes;
   drawGraph(Link, Nodes);
-  console.log(Link);
 
 }
 
@@ -125,7 +141,7 @@ function drawGraph(linkValue, nodeValue ) {
       });
 
   node.append("title")
-      .text(function(d) { return d.name; });
+      .text(function(d) { return d.n; });
 
   resize();
   d3.select(window).on("resize", resize);

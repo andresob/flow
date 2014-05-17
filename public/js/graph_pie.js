@@ -4,11 +4,15 @@ function pieGraph (total, unused) {
 
   var data = [total,unused ];
 
+  var text = data[1]/data[0];
+
+  text = (text).toFixed(4);
+
   var color = ["#D9D9D9", "#fbcc6f"];
   
-  var width = 220,
-      height = 220,
-      radius = Math.min(width, height) / 2;
+  var width = 200,
+      height = 120,
+      radius = 200 / 2;
   
   var pie = d3.layout.pie()
       .sort(null);
@@ -36,6 +40,6 @@ function pieGraph (total, unused) {
   var pieLabel = center_group.append("svg:text")
       .attr("dy", ".35em").attr("class", "chartLabel")
       .attr("text-anchor", "middle")
-      .text((data[1]/data[0]).toFixed(2) * 100 + "%");
+      .text(text* 100 + "%");
   
 }

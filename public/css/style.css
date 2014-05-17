@@ -264,8 +264,37 @@ body {
   color: #fff;
 }
 
-
 /* End of pick date */
+
+
+/* legenda */
+
+.legend {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.legend li {
+  font-size: .75em;
+  width: 20%;
+  padding: 0;
+  float: left;
+  display: inline;
+  list-style: none;
+  height: 22px;
+}
+
+.regions {
+  float: left;
+  margin: 0;
+  width: 100%;
+  line-height: 23px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* End of legenda */
 
 /* Pre code */
 
