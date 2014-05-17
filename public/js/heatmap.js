@@ -1,7 +1,7 @@
 var width = window.innerWidth -100,
     height = window.innerHeight;
 
-var  numClasses = 9, hexI = 12, radius = 9;
+var  numClasses = 9, radius = 9;
 
 var hexbin = d3.hexbin()
     .size([width, height]);
@@ -31,15 +31,16 @@ var averageFunction = function(d) {
   return Math.floor(sum/d.length/1000)-1;
 };
 
-var positions = [], rate = [];
+var positions = [], aux; 
 
 queue()
   .defer(d3.json, "data/maps/brasil.topo.json" )
-  .defer(d3.csv, "data/heatmap/coordsBrasil.csv" )
+  .defer(d3.csv, "data/heatmap/coords.csv" )
   .await(ready);
 
 function ready(error, collection, data) {
  
+  aux = data
 
   state.selectAll("path")
       .data(topojson.feature(collection, collection.objects.states).features)
@@ -47,7 +48,7 @@ function ready(error, collection, data) {
     .attr("d", path);
 
   data.forEach(function(datum) {
-    positions.push(projection([+datum.lot, +datum.lat]).concat(+datum.output));
+    positions.push(projection([+datum.lot, +datum.lat]).concat(+datum.value));
   });
 
   var g = circles.selectAll("g")
@@ -96,6 +97,5 @@ function drawHex (radius) {
 }
 
 function drawAuxHex () {
-  alert("bla");
-
+  RadarChart.draw("#centered", d, mycfg);
 }
