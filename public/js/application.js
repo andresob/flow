@@ -145,6 +145,7 @@ $(document).ready(function(){
 		range: true,
 		min: 1,
 		max: 120610,
+    step: 100,
 		values: [ 5000, 120610 ],
 		slide: function( event, ui ) {
 			$( ".sliderRangeLabel" ).html(ui.values[ 0 ] + " até " + ui.values[ 1 ] );

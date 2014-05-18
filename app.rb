@@ -20,7 +20,3 @@ end
 get '/heatmap' do
   haml :heatmap
 end
-
-get '/circle' do
-  haml :circle
-end
