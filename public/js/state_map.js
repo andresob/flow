@@ -7,9 +7,7 @@ function drawState (state) {
   var width = 800,
       height = window.innerHeight;
   
-  var projection = d3.geo.mercator()
-      .scale(stateFile[0])
-      .translate(stateFile[1]);
+  var projection = d3.geo.mercator();
 
   var path = d3.geo.path()
       .projection(projection);
@@ -25,15 +23,30 @@ function drawState (state) {
   state = svg.append("svg:g")
         .attr("class", "states state-borders");
   
-  d3.select("#stateName").text(stateFile[3]).attr("class","animated fadeInLeft");
+  d3.select("#stateName").text(stateFile[1]).attr("class","animated fadeInLeft");
   
   queue()
-    .defer(d3.json, "data/maps/" + stateFile[2] + ".topo.json")
-    .defer(d3.csv, "data/states/" + stateFile[2] + ".csv")
-    .defer(d3.csv, "data/migrations/" + stateFile[2] + ".csv")
+    .defer(d3.json, "data/maps/" + stateFile[0] + ".topo.json")
+    .defer(d3.csv, "data/states/" + stateFile[0] + ".csv")
+    .defer(d3.csv, "data/migrations/" + stateFile[0] + ".csv")
     .await(ready);
 
   function ready(error, states, cities, migrations) {
+
+    var fit = topojson.feature(states, states.objects.layer1);
+
+    projection
+        .scale(1)
+        .translate([0, 0]);
+
+    var b = path.bounds(fit),
+        s = .65 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+        t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+
+    projection
+        .scale(s)
+        .translate(t);
+
     var cityById = d3.map(),
         positions = [];
   

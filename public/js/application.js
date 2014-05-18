@@ -2,57 +2,57 @@ function dicState (a) {
 
   switch(a) {
     case "Acre":
-      return [24000, [5100,-300], "ac", "Acre"];
+      return ["ac", "Acre"];
     case "Alagoas":
-      return [50000, [5450,-1050], "al", "Alagoas"];
+      return ["al", "Alagoas"];
     case "Amazonas":
-      return [14000, [2900,200], "am", "Amazonas"];
+      return ["am", "Amazonas"];
     case "Amapá":
-      return [25000, [3950,450], "ap", "Amapá" ];
+      return ["ap", "Amapá" ];
     case "Bahia":
-      return [19000, [2600,-400], "ba", "Bahia"];
+      return ["ba", "Bahia"];
     case "Ceará":
-      return [30000, [3600,-100], "ce", "Ceará"];
+      return ["ce", "Ceará"];
     case "Espírito Santo":
-      return [41000, [4900, -1950], "es", "Espírito Santo"];
+      return ["es", "Espírito Santo"];
     case "Goiás":
-      return [24000, [3650, -700], "go", "Goiás"];
+      return ["go", "Goiás"];
     case "Maranhão":
-      return [20000, [2800, 50], "ma", "Maranhão"];
+      return ["ma", "Maranhão"];
     case "Minas Gerais":
-      return [20000, [2950, -700], "mg", "Minas Gerais"];
+      return ["mg", "Minas Gerais"];
     case "Mato Grosso do Sul":
-      return [22000, [3680, -900], "ms", "Mato Grosso do Sul"];
+      return ["ms", "Mato Grosso do Sul"];
     case "Mato Grosso":
-      return [16000, [2850, -200], "mt", "Mato Grosso"];
+      return ["mt", "Mato Grosso"];
     case "Pará":
-      return [14000, [2400, 200], "pa", "Pará"];
+      return ["pa", "Pará"];
     case "Paraíba":
-      return [39000, [4300, -400], "pb", "Paraíba"];
+      return ["pb", "Paraíba"];
     case "Pernambuco":
-      return [36000, [4200, -500], "pe", "Pernambuco"];
+      return ["pe", "Pernambuco"];
     case "Piauí":
-      return [22000, [2900, -90], "pi", "Piauí"];
+      return ["pi", "Piauí"];
     case "Paraná":
-      return [26000, [4050, -1500], "pr", "Paraná"];
+      return ["pr", "Paraná"];
     case "Rio de Janeiro":
-      return [42000, [5350, -2350], "rj", "Rio de Janeiro"];
+      return ["rj", "Rio de Janeiro"];
     case "Rio Grande do Norte":
-      return [46000, [5050, -400], "rn", "Rio Grande do Norte"];
+      return ["rn", "Rio Grande do Norte"];
     case "Rondônia":
-      return [22000, [4150, -350], "ro", "Rondônia"];
+      return ["ro", "Rondônia"];
     case "Roráima":
-      return [21000, [3900, 450], "rr", "Roráima"];
+      return ["rr", "Roráima"];
     case "Rio Grande do Sul":
-      return [24000, [3950, -1760], "rs", "Rio Grande do Sul"];
+      return ["rs", "Rio Grande do Sul"];
     case "Santa Catarina":
-      return [29000, [4450, -2000], "sc", "Santa Catarina"];
+      return ["sc", "Santa Catarina"];
     case "Sergipe":
-      return [50000, [5450, -1150], "se", "Sergipe"];
+      return ["se", "Sergipe"];
     case "São Paulo":
-      return [24000, [3650, -1200], "sp", "São Paulo"];
+      return ["sp", "São Paulo"];
     case "Tocantis":
-      return [20000, [3000, -150], "to", "Tocantis"];
+      return ["to", "Tocantis"];
    default:
       return alert ("Faça a busca novamente");
   }

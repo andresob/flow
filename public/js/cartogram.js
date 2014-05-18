@@ -28,8 +28,28 @@ var carto = d3.cartogram()
 
 var vote_data = d3.map();
 
-d3.json("data/maps/brasil.topo.json", function (data) {
-    topology = data;
+queue()
+  .defer(d3.json, "data/maps/brasil.topo.json")
+  .defer(d3.csv, "data/cartogram/brasil_def.csv")
+  .await(ready);
+
+function ready(error, collection, def) {
+
+    //var fit = topojson.feature(collection, collection.objects.states);
+
+    //projection
+    //    .scale(1)
+    //    .translate([0, 0]);
+
+    //var b = path.bounds(fit),
+    //    s = .65 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+    //    t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+
+    //projection
+    //    .scale(s)
+    //    .translate(t);
+
+    topology = collection;
     geometries = topology.objects.states.geometries;
 
     var features = carto.features(topology, geometries);
@@ -43,14 +63,12 @@ d3.json("data/maps/brasil.topo.json", function (data) {
         })
         .attr("d", path);
 
-    d3.select("#click_to_run").text("Clique AQUI para iniciar");
-});
+    def.forEach(function (d) {
+        vote_data.set(d.STATE,[d.INDEX, d.NAME]);
+    });
 
-d3.csv("data/cartogram/brasil_def.csv", function (data) {
-  data.forEach(function (d) {
-      vote_data.set(d.STATE,[d.INDEX, d.NAME]);
-  });
-});
+    d3.select("#click_to_run").text("Clique AQUI para iniciar");
+}
 
 function do_update() {
     d3.select("#click_to_run").text("aguarde...");

@@ -6,16 +6,14 @@ var  numClasses = 9, radius = 9;
 var hexbin = d3.hexbin()
     .size([width, height]);
 
-var projection = d3.geo.mercator()
-    .scale(700)
-    .translate([1050, 100]);
+var projection = d3.geo.mercator();
 
 var path = d3.geo.path()
     .projection(projection);
 
 var svg = d3.select("#heatmap").insert("svg:svg")
     .attr("width", width - 50)
-    .attr("height", height -100);
+    .attr("height", height);
 
 var state = svg.append("svg:g")
     .attr("id", "state");
@@ -40,6 +38,20 @@ queue()
 
 function ready(error, collection, data) {
  
+  var fit = topojson.feature(collection, collection.objects.states);
+
+  projection
+      .scale(1)
+      .translate([0, 0]);
+
+  var b = path.bounds(fit),
+      s = .75 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+      t = [(width - 400 - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+
+  projection
+      .scale(s)
+      .translate(t);
+
   aux = data
 
   state.selectAll("path")
@@ -92,7 +104,10 @@ function drawHex (radius) {
     {
       d3.select(this).attr("stroke", "none");
     })
-    .on("click", drawAuxHex);
+    .on("click", function(d) {
+      var n = d3.select(this);
+      console.log(hexbin(aux));
+    });
 
 }
 
