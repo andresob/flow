@@ -228,4 +228,9 @@ svg:not(:hover) .city-cell {
   opacity: .35;
 }
 
+.circleCity {
+  fill: none;
+  stroke: steelblue;
+}
+
 /* End of definitions of heatmap visualization */
