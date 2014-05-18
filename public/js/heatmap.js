@@ -18,9 +18,6 @@ var svg = d3.select("#heatmap").insert("svg:svg")
 var state = svg.append("svg:g")
     .attr("id", "state");
 
-var circles = svg.append("svg:g")
-    .attr("id", "circles");
-
 var averageFunction = function(d) {
   var sum = 0;
   d.forEach(function (entry) {
@@ -29,14 +26,15 @@ var averageFunction = function(d) {
   return Math.floor(sum/d.length/1000)-1;
 };
 
-var positions = [], aux; 
+var positions = [], aux, mun; 
 
 queue()
+  .defer(d3.json, "data/maps/mun.topo.json" )
   .defer(d3.json, "data/maps/brasil.topo.json" )
   .defer(d3.csv, "data/heatmap/coords.csv" )
   .await(ready);
 
-function ready(error, collection, data) {
+function ready(error, circ, collection, data) {
  
   var fit = topojson.feature(collection, collection.objects.states);
 
@@ -52,19 +50,43 @@ function ready(error, collection, data) {
       .scale(s)
       .translate(t);
 
-  aux = data
+  aux = data;
+  mun = circ;
 
   state.selectAll("path")
       .data(topojson.feature(collection, collection.objects.states).features)
     .enter().append("svg:path")
     .attr("d", path);
 
-  data.forEach(function(datum) {
+  drawCircles(aux);
+
+}
+
+function drawCircles () {
+
+  var munC = svg.append("svg:g")
+      .attr("id", "mun");
+
+  munC.selectAll("g")
+      .data(topojson.feature(mun, mun.objects.municipios).features)
+    .enter().append("svg:circle")
+      .attr("class", "circleCity")
+      .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+      .attr("r", function(d) { return Math.sqrt(path.area(d) / Math.PI); });
+
+}
+
+function drawHex (radius) {
+
+  var circles = svg.append("svg:g")
+      .attr("id", "circles");
+
+  aux.forEach(function(datum) {
     positions.push(projection([+datum.lot, +datum.lat]).concat(+datum.value));
   });
 
   var g = circles.selectAll("g")
-      .data(data)
+      .data(aux)
     .enter().append("svg:g");
   
   g.append("svg:circle")
@@ -74,11 +96,6 @@ function ready(error, collection, data) {
       .style("fill", "white")
       .attr("class", function(d) { return d.city; });
 
-  drawHex(radius);
-}
-
-function drawHex (radius) {
-      
   d3.select(".hexagons").remove();
 
   hexbin.radius(radius);
@@ -114,3 +131,16 @@ function drawHex (radius) {
 function drawAuxHex () {
   RadarChart.draw("#centered", d, mycfg);
 }
+
+d3.select(".pick.circ").on("click", function(d) {
+  drawCircles();
+  d3.select(".hexagons").remove();
+  d3.select("#circles").remove();
+  d3.select("#rate").attr("class", "marginInfo animated hide");
+});
+
+d3.select(".pick.hex").on("click", function(d) {
+  drawHex(9);
+  d3.select("#mun").remove();
+  d3.select("#rate").attr("class", "marginInfo animated fadeInDown");
+});
