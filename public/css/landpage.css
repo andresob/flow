@@ -1,3 +1,59 @@
+#map {
+  background: url(../images/imageR.png);
+  background-repeat:no-repeat;
+  background-position: 80% 80%;
+  background-size: 40%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 54px;
+  width: 100%;
+  z-index: 1;
+  outline: 0;
+  overflow: hidden;
+}
+
+#main {
+  position: absolute;
+  text-align: justify;
+  top: 54px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+  background-color: rgba(250,250,250,0.25);
+  overflow: scroll;
+  padding-top: 45px;
+}
+
+#main p {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  font-family: proxima-nova, "Helvetica Neue", Helvetica, arial, sans-serif;
+  font-weight: 300;
+  color: #444444;
+  text-indent: 2em;
+  line-height: 24px;
+}
+
+#hideIntro {
+  margin: 30px 0 0 0;
+}
+#hideIntro a {
+  background-color: #C94034;
+  color: whitesmoke;
+  text-align: center;
+  padding: 1em 2em;
+  width: 100px;
+  font-weight: 600;
+}
+
+#hideIntro a:hover {
+  text-decoration: none;
+}
+
 .header {
   padding: 7px 0;
   background: #fff;

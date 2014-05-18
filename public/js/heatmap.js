@@ -58,7 +58,7 @@ function ready(error, circ, collection, data) {
     .enter().append("svg:path")
     .attr("d", path);
 
-  drawCircles(aux);
+  drawHex(9);
 
 }
 
@@ -123,7 +123,7 @@ function drawHex (radius) {
     })
     .on("click", function(d) {
       var n = d3.select(this);
-      console.log(hexbin(aux));
+      console.log(n);
     });
 
 }
