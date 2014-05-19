@@ -2,7 +2,7 @@ var width = window.innerWidth -100,
     height = window.innerHeight;
 
 var projection = d3.geo.mercator()
-    .scale(700)
+    .scale(4500)
     .translate([1050, 100]);
 
 var path = d3.geo.path()

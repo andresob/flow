@@ -1,3 +1,72 @@
+defaultMap();
+
+function defaultMap () {
+
+  var width = window.innerWidth -100,
+      height = window.innerHeight;
+  
+  var projection = d3.geo.collignon();
+  
+  var path = d3.geo.path()
+      .projection(projection);
+  
+  var svg = d3.select("#map").insert("svg:svg")
+      .attr("width", width - 50)
+      .attr("height", height);
+  
+  var state = svg.append("svg:g")
+      .attr("id", "state");
+  
+  var circles = svg.append("svg:g")
+      .attr("id", "circles");
+  
+  var positions = []; 
+  
+  queue()
+    .defer(d3.json, "data/maps/brasil.topo.json" )
+    .defer(d3.csv, "data/heatmap/coords.csv" )
+    .await(ready);
+  
+  function ready(error, collection, data) {
+   
+    var fit = topojson.feature(collection, collection.objects.states);
+  
+    projection
+        .scale(1)
+        .translate([0, 0]);
+  
+    var b = path.bounds(fit),
+        s = .55 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+        t = [(width - 400 - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+  
+    projection
+        .scale(s)
+        .translate(t);
+  
+    state.selectAll("path")
+        .data(topojson.feature(collection, collection.objects.states).features)
+      .enter().append("svg:path")
+      .attr("d", path);
+  
+    data.forEach(function(datum) {
+      positions.push(projection([+datum.lot, +datum.lat]).concat(+datum.value));
+    });
+  
+    var g = circles.selectAll("g")
+        .data(data)
+      .enter().append("svg:g");
+    
+    g.append("svg:circle")
+        .attr("cx", function(d, i) { return positions[i][0]; })
+        .attr("cy", function(d, i) { return positions[i][1]; })
+        .attr("r", 1)
+        .style("fill", "white")
+        .attr("class", function(d) { return d.city; });
+  
+  
+  }
+}
+
 function drawState (state) {
 
   d3.selectAll('#map > svg').remove();
