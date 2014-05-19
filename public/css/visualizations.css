@@ -220,6 +220,15 @@ svg:not(:hover) .city-cell {
   padding: 50px 0 0 100px
 }
 
+#centered {
+  height:450px;
+  width: 500px;
+  bottom: 0;
+  float: right;
+  position: absolute;
+  right: 0;
+}
+
 #circles {
   fill: #3f3f3f;
 }

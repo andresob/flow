@@ -26,7 +26,7 @@ var averageFunction = function(d) {
   return Math.floor(sum/d.length/1000)-1;
 };
 
-var positions = [], aux, mun; 
+var positions = [], aux, mun, hexI, hexC={}, hexA=[],hexB=[]; 
 
 queue()
   .defer(d3.json, "data/maps/mun.topo.json" )
@@ -82,7 +82,7 @@ function drawHex (radius) {
       .attr("id", "circles");
 
   aux.forEach(function(datum) {
-    positions.push(projection([+datum.lot, +datum.lat]).concat(+datum.value));
+    positions.push(projection([+datum.lot, +datum.lat]).concat(+datum.value).concat(datum.axis));
   });
 
   var g = circles.selectAll("g")
@@ -122,14 +122,35 @@ function drawHex (radius) {
       d3.select(this).attr("stroke", "none");
     })
     .on("click", function(d) {
-      var n = d3.select(this);
-      console.log(n);
+      hexI = d3.select(this).data()[0];
+      console.log(hexI);
+      drawAux(hexI);
     });
 
 }
 
-function drawAuxHex () {
-  RadarChart.draw("#centered", d, mycfg);
+function drawAux (hexData) {
+
+  hexA=[], hexB=[];
+
+  hexData.forEach(function(datum) {
+    hexC.axis = datum[3]
+    hexC.value = +datum[2];
+    hexB.push(hexC);
+  });
+  
+  hexA.push(hexB);
+
+  var mycfg = {
+    w: 350,
+    h: 350,
+    maxValue: 1,
+    levels: 6,
+    ExtraWidthX: 300
+  }
+  
+  RadarChart.draw("#centered", hexA, mycfg);
+  
 }
 
 d3.select(".pick.circ").on("click", function(d) {
