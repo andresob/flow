@@ -44,7 +44,7 @@ function ready(error, circ, collection, data) {
 
   var b = path.bounds(fit),
       s = .75 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
-      t = [(width - 500 - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+      t = [(width - 600 - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
 
   projection
       .scale(s)
@@ -149,7 +149,7 @@ function drawAux (hexData) {
     ExtraWidthX: 180
   }
  
-  window.width > 1200 ? RadarChart.draw("#centered", hexA, mycfg) : RadarChart.draw("#centeredSmall", hexA, mycfg);
+  RadarChart.draw("#centered", hexA, mycfg);
   
 }
 

@@ -1,22 +1,5 @@
-#config.animated.fadeInRight
-  .row-fluid
-    .col-md-12
-      #introR
-        .row
-          .col-md-12
-            %h5 Escolha representação
-            .pickDate.bordered
-              %a.pick.hex.active
-                Hexágonos
-              %a.pick.circ.middle
-                Círculos
-        .row
-          .col-md-12
-            #rate.marginInfo.animated
-              %h5 Escolha o raio
-              .slider.slim.slider-warning.sliderMin.ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content.ui-corner-all{"aria-disabled" => "false"}
-                %a.ui-slider-handle.ui-state-default.ui-corner-all{href: "#"}
-                .ui-slider-range.ui-widget-header.ui-corner-all.ui-slider-range-min{style: "width: 50%;"}
-              .field_notice
-                Valor :
-                %span.must.sliderMinLabel 9
+.downbar.animated.fadeInUp
+  %ul.side-nav
+    %li.hide-config
+      %a{href: "#"}
+        %span.glyphicon.glyphicon-cog.gear
