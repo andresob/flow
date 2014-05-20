@@ -1,7 +1,7 @@
 var RadarChart = {
   draw: function(id, d, options){
   var cfg = {
-   radius: 3,
+   radius: 2,
    w: 500,
    h: 500,
    factor: 1,
@@ -29,7 +29,6 @@ var RadarChart = {
   var allAxis = (d[0].map(function(i, j){return i.axis}));
   var total = allAxis.length;
   var radius = cfg.factor*Math.min(cfg.w/2, cfg.h/2);
-  var Format = d3.format('%');
   d3.select(id).select("svg").remove();
   
   var g = d3.select(id)
@@ -74,7 +73,7 @@ var RadarChart = {
      .style("font-size", "10px")
      .attr("transform", "translate(" + (cfg.w/2-levelFactor + cfg.ToRight) + ", " + (cfg.h/2-levelFactor) + ")")
      .attr("fill", "#737373")
-     .text(Format((j+1)*cfg.maxValue/cfg.levels));
+     .text(((j+1)*cfg.maxValue/cfg.levels).toFixed(0));
   }
   
   series = 0;
@@ -92,6 +91,7 @@ var RadarChart = {
     .attr("y2", function(d, i){return cfg.h/2*(1-cfg.factor*Math.cos(i*cfg.radians/total));})
     .attr("class", "line")
     .style("stroke", "grey")
+    .style("stroke-opacity", "0.75")
     .style("stroke-width", "1px");
 
   axis.append("text")
@@ -177,7 +177,7 @@ var RadarChart = {
           tooltip
             .attr('x', newX)
             .attr('y', newY)
-            .text(Format(d.value))
+            .text(d.value)
             .transition(200)
             .style('opacity', 1);
             

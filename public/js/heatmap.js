@@ -122,7 +122,7 @@ function drawHex (radius) {
       d3.select(this).attr("stroke", "none");
     })
     .on("click", function(d) {
-      hexI = d3.select(this).data()[0];
+      hexI = d3.select(this).data()[0].sort(function(a,b) { return d3.descending(a[2],b[2])});
       drawAux(hexI);
     });
 
@@ -144,12 +144,12 @@ function drawAux (hexData) {
   var mycfg = {
     w: 350,
     h: 350,
-    maxValue: 10000,
+    maxValue: hexI[0][2],
     levels: 6,
     ExtraWidthX: 180
   }
-  
-  RadarChart.draw("#centered", hexA, mycfg);
+ 
+  window.width > 1200 ? RadarChart.draw("#centered", hexA, mycfg) : RadarChart.draw("#centeredSmall", hexA, mycfg);
   
 }
 

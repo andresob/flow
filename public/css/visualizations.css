@@ -222,10 +222,14 @@ svg:not(:hover) .city-cell {
 
 #centered {
   bottom: 0;
-  right: 1%;
+  right: 16%;
   position: absolute;
   float: right;
   z-index: 999999;
+}
+
+#centeredSmall {
+  margin-left: 100px;
 }
 
 #circles {
