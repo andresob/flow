@@ -1,7 +1,7 @@
 var width = window.innerWidth -100,
     height = window.innerHeight;
 
-var  numClasses = 9, radius = 9;
+var numClasses = 9, radius = 9;
 
 var hexbin = d3.hexbin()
     .size([width, height]);
@@ -44,7 +44,7 @@ function ready(error, circ, collection, data) {
 
   var b = path.bounds(fit),
       s = .75 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
-      t = [(width - 400 - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+      t = [(width - 500 - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
 
   projection
       .scale(s)
@@ -123,7 +123,6 @@ function drawHex (radius) {
     })
     .on("click", function(d) {
       hexI = d3.select(this).data()[0];
-      console.log(hexI);
       drawAux(hexI);
     });
 
@@ -137,6 +136,7 @@ function drawAux (hexData) {
     hexC.axis = datum[3]
     hexC.value = +datum[2];
     hexB.push(hexC);
+    hexC = {};
   });
   
   hexA.push(hexB);
@@ -144,9 +144,9 @@ function drawAux (hexData) {
   var mycfg = {
     w: 350,
     h: 350,
-    maxValue: 1,
+    maxValue: 10000,
     levels: 6,
-    ExtraWidthX: 300
+    ExtraWidthX: 180
   }
   
   RadarChart.draw("#centered", hexA, mycfg);
@@ -157,6 +157,7 @@ d3.select(".pick.circ").on("click", function(d) {
   drawCircles();
   d3.select(".hexagons").remove();
   d3.select("#circles").remove();
+  d3.select("#centered > svg").remove();
   d3.select("#rate").attr("class", "marginInfo animated hide");
 });
 

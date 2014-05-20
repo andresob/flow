@@ -182,9 +182,9 @@ svg:not(:hover) .city-cell {
 }
 
 #state path:hover {
-   fill: #807dba;
-   cursor: pointer;    
-   pointer-events: all;
+  stroke-width: 3px;
+  cursor: pointer;    
+  pointer-events: all;
 }
 
 #cartogram {
@@ -221,12 +221,11 @@ svg:not(:hover) .city-cell {
 }
 
 #centered {
-  height:450px;
-  width: 500px;
   bottom: 0;
-  float: right;
+  right: 1%;
   position: absolute;
-  right: 0;
+  float: right;
+  z-index: 999999;
 }
 
 #circles {
