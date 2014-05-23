@@ -26,12 +26,6 @@ function defaultMap () {
   var lines = svg.append("svg:g")
       .attr("id", "lines");
 
-  var tip = d3.tip()
-      .attr('class', 'd3-tip')
-      .offset([-10, 0])
-      .html(function(d) {
-        return "<span>" + d.axis + ":  " +  d.value + "</span>";
-      });
   
   var positions = []; 
   
@@ -62,7 +56,7 @@ function defaultMap () {
       .attr("d", path);
   
     data.forEach(function(datum) {
-      positions.push(projection([+datum.lot, +datum.lat]).concat(+datum.value));
+      positions.push(projection([+datum.lot, +datum.lat]).concat(+datum.imigrantes).concat(+datum.emigrantes));
     });
   
     var g = circles.selectAll("g")
@@ -75,27 +69,53 @@ function defaultMap () {
         .attr("rx", 2)
         .attr("ry", 1)
         .attr("stroke", "white")
+        .style("stroke-width", "0.7")
         .style("fill", "none")
         .attr("class", function(d) { return d.city; });
 
-    var g = lines.selectAll("g")
-        .data(data)
-      .enter().append("svg:g");
+    drawline(2, "#A50026");
 
-    g.call(tip);
+    d3.select(".pick.emig").on("click", function(d) {
+      d3.selectAll("#lines > g").remove();
+      drawline(2, "#A50026");
+    });
+    
+    d3.select(".pick.imig").on("click", function(d) {
+      d3.selectAll("#lines > g").remove();
+      drawline(3, "#AABBCC");
+    });
+  
+    function drawline (mig, color) {
 
-    g.append("svg:line")
-        .attr("x1", function(d, i) { return positions[i][0]; })
-        .attr("y1", function(d, i) { return positions[i][1]; })
-        .attr("x2", function(d, i) { return positions[i][0]; })
-        .attr("y2", function(d, i) { return (positions[i][1] - positions[i][2]/500) })
-        //.style("stroke", function(d) { return color(d.value)})
-        .style("stroke","#A50026")
-        .style("stroke-width", 3)
-        .style("opacity", "0.35")
-        .attr("class", function(d) { return d.city; })
-        .on("mouseover", tip.show)
-        .on("mouseout", tip.hide);
+      var g = lines.selectAll("g")
+          .data(data)
+        .enter().append("svg:g");
+
+      var value;
+      
+      var tip = d3.tip()
+          .attr('class', 'd3-tip')
+          .offset([-10, 0])
+          .html(function(d) {
+            return "<span>" + d.axis + /*":  " +  d.value +*/ "</span>";
+          });
+
+      g.call(tip);
+
+      g.append("svg:line")
+          .attr("x1", function(d, i) { return positions[i][0]; })
+          .attr("y1", function(d, i) { return positions[i][1]; })
+          .attr("x2", function(d, i) { return positions[i][0]; })
+          .attr("y2", function(d, i) { return (positions[i][1] - positions[i][mig]/1000) })
+          //.style("stroke", function(d) { return color(d.value)})
+          .style("stroke", color)
+          .style("stroke-width", 3)
+          //.style("opacity", function(d,i) { return (1 -  positions[i][2]/10000)})
+          .style("opacity", "0.35")
+          .attr("class", function(d) { return d.city; })
+          .on("mouseover", tip.show)
+          .on("mouseout", tip.hide);
+    }
   }
 }
 

@@ -26,7 +26,7 @@ var averageFunction = function(d) {
   return Math.floor(sum/d.length/1000)-1;
 };
 
-var positions = [], aux, mun, hexI, hexC={}, hexA=[],hexB=[]; 
+var positions = [], aux, mun, hexI, hexA=[], hexB=[], hexC={}; 
 
 queue()
   .defer(d3.json, "data/maps/mun.topo.json" )
@@ -82,7 +82,7 @@ function drawHex (radius) {
       .attr("id", "circles");
 
   aux.forEach(function(datum) {
-    positions.push(projection([+datum.lot, +datum.lat]).concat(+datum.value).concat(datum.axis));
+    positions.push(projection([+datum.lot, +datum.lat]).concat(+datum.imigrantes).concat(datum.axis));
   });
 
   var g = circles.selectAll("g")
@@ -122,7 +122,8 @@ function drawHex (radius) {
       d3.select(this).attr("stroke", "none");
     })
     .on("click", function(d) {
-      hexI = d3.select(this).data()[0].sort(function(a,b) { return d3.descending(a[2],b[2])});
+      hexI = null;
+      hexI = d3.select(this).data()[0].sort(function(a,b) { return b[2] - a[2]});
       drawAux(hexI);
     });
 
@@ -133,18 +134,18 @@ function drawAux (hexData) {
   hexA=[], hexB=[];
 
   hexData.forEach(function(datum) {
-    hexC.axis = datum[3]
+    hexC = {};
+    hexC.axis = datum[3];
     hexC.value = +datum[2];
     hexB.push(hexC);
-    hexC = {};
   });
-  
+
   hexA.push(hexB);
 
   var mycfg = {
     w: 350,
     h: 350,
-    maxValue: hexI[0][2],
+    maxValue: hexData[0][2],
     levels: 6,
     ExtraWidthX: 180
   }
