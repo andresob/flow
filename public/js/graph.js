@@ -49,7 +49,7 @@ var svg = d3.select("#graph").append("svg")
 var force = d3.layout.force()
     .charge(-150)
     .linkStrength(1)
-    .linkDistance( function(d) { return (d.v/200); } )
+    .linkDistance( function(d) { return (d.v/200*2); } )
     .gravity([1])
     .size([width, height]);
 
@@ -112,7 +112,7 @@ function drawGraph(linkValue, nodeValue ) {
       .on('click', function(d) {
           if (focus === d) {
             force.charge(-150)
-                 .linkDistance( function(d) { return (d.v/200); } )
+                 .linkDistance( function(d) { return (d.v/200*2); } )
                  .linkStrength(1)
                  .start();
 

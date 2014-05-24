@@ -2,9 +2,9 @@ function pieGraph (total, unused) {
 
   d3.select("#pie  > svg").remove();
 
-  var data = [total,unused ];
+  var data = [ total-unused,unused ];
 
-  var text = data[1]/data[0];
+  var text = data[1]/total;
 
   text = (text).toFixed(4);
 
