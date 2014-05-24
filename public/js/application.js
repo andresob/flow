@@ -144,13 +144,13 @@ $(document).ready(function(){
 	$( ".sliderRange" ).slider({
 		range: true,
 		min: 1,
-		max: 120610,
-    step: 100,
-		values: [ 5000, 120610 ],
+		max: 450000,
+    step: 200,
+		values: [ 5000, 200000 ],
 		slide: function( event, ui ) {
 			$( ".sliderRangeLabel" ).html(ui.values[ 0 ] + " até " + ui.values[ 1 ] );
-      $(".ui-slider-range.ui-widget-header.ui-corner-all").css("left", ui.values[0]/120610*100 + "%");
-      $(".ui-slider-range.ui-widget-header.ui-corner-all").css("width", (ui.values[1]-ui.values[0])/120610*100 + "%");
+      $(".ui-slider-range.ui-widget-header.ui-corner-all").css("left", ui.values[0]/450000*100 + "%");
+      $(".ui-slider-range.ui-widget-header.ui-corner-all").css("width", (ui.values[1]-ui.values[0])/450000*100 + "%");
 		},
     change: function(event, ui) {
       rangeLinks(ui.values[0], ui.values[1], flow);

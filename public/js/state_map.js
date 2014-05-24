@@ -77,12 +77,12 @@ function defaultMap () {
 
     d3.select(".pick.emig").on("click", function(d) {
       d3.selectAll("#lines > g").remove();
-      drawline(2, "#A50026");
+      drawline(2, "rgb(165, 0, 38)");
     });
     
     d3.select(".pick.imig").on("click", function(d) {
       d3.selectAll("#lines > g").remove();
-      drawline(3, "#AABBCC");
+      drawline(3, "rgb(49, 54, 149)");
     });
   
     function drawline (mig, color) {

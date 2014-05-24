@@ -53,13 +53,19 @@ var force = d3.layout.force()
     .gravity([1])
     .size([width, height]);
 
-var flow, focus, total, unused, Link, Nodes, min = 5000, max = 120610;
+var flow, focus, total, unused, Link, Nodes, min = 5000, max = 219222;
 
 svg.call(tip);
 
-queue()
-  .defer(d3.json, "data/graph/link1991.json")
-  .await(ready);
+load("1991");
+
+function load (filename) {
+
+  queue()
+    .defer(d3.json, "data/graph/" + filename + ".json")
+    .await(ready);
+
+}
 
 function ready(error, graph) {
 
@@ -190,4 +196,23 @@ d3.select(".switch-label").on("click", function() {
     n.attr("r", function(d) { return 2 * Math.sqrt(d.weight); });
     d3.select(".switch-label").attr("class", "switch-label switchOff");
   }
+});
+
+d3.select(".pick.nov").on("click", function(d) {
+  d3.selectAll("#graph > svg > g").remove();
+  d3.selectAll("#graph > svg > circle").remove();
+  max = 219222;
+  load("1991");
+});
+d3.select(".pick.zero").on("click", function(d) {
+  d3.selectAll("#graph > svg > g").remove();
+  d3.selectAll("#graph > svg > circle").remove();
+  max = 292331;
+  load("2000");
+});
+d3.select(".pick.dez").on("click", function(d) {
+  d3.selectAll("#graph > svg > g").remove();
+  d3.selectAll("#graph > svg > circle").remove();
+  max = 411922;
+  load("2010");
 });
