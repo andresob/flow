@@ -1,6 +1,13 @@
 var width = window.innerWidth -100,
     height = window.innerHeight;
 
+var projection = d3.geo.mercator()
+    .scale(5500)
+    .translate([1250, 100]);
+
+var path = d3.geo.path()
+    .projection(projection);
+
 var svg = d3.select("#cartogram").insert("svg:svg")
     .attr("width", width - 50)
     .attr("height", height);
@@ -10,7 +17,7 @@ var percent = (function() {
       return function(n) { return fmt(n) + "%"; };
     })(),
     fields = [
-      {name: "(no scale)", id: "none"},
+      {name: "escolha a opção", id: "none"},
       {name: "Imigrantes", id: "popest", key: "POPESTIMATE%d"},
       {name: "Emigrantes", id: "births", key: "BIRTHS%d"},
       {name: "Saldo Migratório", id: "deaths", key: "DEATHS%d"},
@@ -55,21 +62,16 @@ yearSelect.selectAll("option")
     .attr("value", function(y) { return y; })
     .text(function(y) { return y; })
 
-  var zoom = d3.behavior.zoom()
-      .translate([-38, 32])
-      .scale(.94)
-      .scaleExtent([0.5, 10.0])
-    states = svg.append("g")
+  var states = svg.append("g")
       .attr("id", "states")
       .selectAll("path");
 
-var proj = d3.geo.mercator(),
-    topology,
+var topology,
     geometries,
     rawData,
     dataById = {},
     carto = d3.cartogram()
-      .projection(proj)
+      .projection(projection)
       .properties(function(d) {
         return dataById[d.id];
       })
@@ -94,9 +96,7 @@ d3.json( "/data/maps/brazil.topo.json", function(topo) {
 });
 
 function init() {
-  var features = carto.features(topology, geometries),
-      path = d3.geo.path()
-        .projection(proj);
+  var features = carto.features(topology, geometries);
 
   states = states.data(features)
     .enter()
@@ -117,9 +117,7 @@ function reset() {
   stat.text("");
   body.classed("updating", false);
 
-  var features = carto.features(topology, geometries),
-      path = d3.geo.path()
-        .projection(proj);
+  var features = carto.features(topology, geometries);
 
   states.data(features)
     .transition()
