@@ -18,11 +18,11 @@ var percent = (function() {
     })(),
     fields = [
       {name: "escolha a opção", id: "none"},
-      {name: "Imigrantes", id: "popest", key: "POPESTIMATE%d"},
-      {name: "Emigrantes", id: "births", key: "BIRTHS%d"},
-      {name: "Saldo Migratório", id: "deaths", key: "DEATHS%d"},
+      {name: "Imigrantes", id: "entrada", key: "ENTRADA%d"},
+      {name: "Emigrantes", id: "saida", key: "SAIDA%d"},
+      {name: "Saldo Migratório", id: "saldo", key: "SALDO%d"},
     ],
-    years = [2010, 2011],
+    years = [1991, 2000],
     fieldsById = d3.nest()
       .key(function(d) { return d.id; })
       .rollup(function(d) { return d[0]; })
