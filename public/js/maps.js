@@ -1,12 +1,19 @@
+var width = window.innerWidth -100,
+    height = window.innerHeight;
+
+var svg = d3.select("#cartogram").insert("svg:svg")
+    .attr("width", width - 50)
+    .attr("height", height);
+
 var percent = (function() {
       var fmt = d3.format(".2f");
       return function(n) { return fmt(n) + "%"; };
     })(),
     fields = [
       {name: "(no scale)", id: "none"},
-      {name: "Population Estimate", id: "popest", key: "POPESTIMATE%d"},
-      {name: "Births", id: "births", key: "BIRTHS%d"},
-      {name: "Deaths", id: "deaths", key: "DEATHS%d"},
+      {name: "Imigrantes", id: "popest", key: "POPESTIMATE%d"},
+      {name: "Emigrantes", id: "births", key: "BIRTHS%d"},
+      {name: "Saldo Migratório", id: "deaths", key: "DEATHS%d"},
     ],
     years = [2010, 2011],
     fieldsById = d3.nest()
@@ -19,7 +26,7 @@ var percent = (function() {
       .reverse()
       .map(function(rgb) { return d3.hsl(rgb); });
 
-var body = d3.select("body"),
+var body = d3.select("#cartogram"),
     stat = d3.select("#status");
 
 var fieldSelect = d3.select("#field")
@@ -48,14 +55,11 @@ yearSelect.selectAll("option")
     .attr("value", function(y) { return y; })
     .text(function(y) { return y; })
 
-var map = d3.select("#map"),
-    zoom = d3.behavior.zoom()
+  var zoom = d3.behavior.zoom()
       .translate([-38, 32])
       .scale(.94)
       .scaleExtent([0.5, 10.0])
-    layer = map.append("g")
-      .attr("id", "layer"),
-    states = layer.append("g")
+    states = svg.append("g")
       .attr("id", "states")
       .selectAll("path");
 
@@ -156,20 +160,16 @@ function update() {
       ? [lo, 0, hi]
       : [lo, d3.mean(values), hi]);
 
-  // normalize the scale to positive numbers
   var scale = d3.scale.linear()
     .domain([lo, hi])
     .range([1, 1000]);
 
-  // tell the cartogram to use the scaled values
   carto.value(function(d) {
     return scale(value(d));
   });
 
-  // generate the new features, pre-projected
   var features = carto(topology, geometries).features;
 
-  // update the data
   states.data(features)
     .select("title")
       .text(function(d) {
@@ -185,7 +185,6 @@ function update() {
     .attr("d", carto.path);
 
   var delta = (Date.now() - start) / 1000;
-  stat.text(["calculated in", delta.toFixed(1), "seconds"].join(" "));
   body.classed("updating", false);
 }
 
@@ -194,7 +193,6 @@ var deferredUpdate = (function() {
   return function() {
     var args = arguments;
     clearTimeout(timeout);
-    stat.text("calculating...");
     return timeout = setTimeout(function() {
       update.apply(null, arguments);
     }, 10);

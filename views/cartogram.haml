@@ -1,14 +1,8 @@
 %script{src: "js/vendor/d3.geo.js"}
 %script{src: "js/vendor/topojson.js"}
-#click_to_run{onclick: "do_update()"}
+=partial ("panelCarto")
 
 #cartogram
-  %form
-    %select#field
-    %select#year
-    %span#status
-  #map-container
-    %svg#map
 
 #intro
   .container
