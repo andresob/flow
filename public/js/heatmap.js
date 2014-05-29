@@ -23,6 +23,9 @@ var averageFunction = function(d) {
   d.forEach(function (entry) {
     sum += entry[2];
   });
+  if (Math.floor(sum/d.length/1000) > 9)
+    return 9;
+  else
     return Math.floor(sum/d.length/1000);
 };
 
