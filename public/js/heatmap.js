@@ -23,7 +23,7 @@ var averageFunction = function(d) {
   d.forEach(function (entry) {
     sum += entry[2];
   });
-  return Math.floor(sum/d.length/1000)-1;
+    return Math.floor(sum/d.length/1000);
 };
 
 var positions = [], aux, mun, hexI, hexA=[], hexB=[], hexC={}; 
@@ -58,6 +58,10 @@ function ready(error, circ, collection, data) {
     .enter().append("svg:path")
     .attr("d", path);
 
+  aux.forEach(function(datum) {
+    positions.push(projection([+datum.lot, +datum.lat]).concat(+datum.imigrantes).concat(datum.axis));
+  });
+
   drawHex(9);
 
 }
@@ -80,10 +84,6 @@ function drawHex (radius) {
 
   var circles = svg.append("svg:g")
       .attr("id", "circles");
-
-  aux.forEach(function(datum) {
-    positions.push(projection([+datum.lot, +datum.lat]).concat(+datum.imigrantes).concat(datum.axis));
-  });
 
   var g = circles.selectAll("g")
       .data(aux)
@@ -108,7 +108,7 @@ function drawHex (radius) {
       .attr("d", function(d) { return hexbin.hexagon(radius); })
       .attr("class", function(d)
       {
-        var c = 'q' + ( (numClasses-1) - averageFunction(d)) + "-" + numClasses;
+        var c = 'q' + ( (numClasses) - averageFunction(d)) + "-" + numClasses;
         return c;
       })
       .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
